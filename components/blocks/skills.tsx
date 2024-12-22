@@ -18,7 +18,7 @@ const Skills = async () => {
 		<div>
 			{skills.map((skill) => {
 				return (
-					<div className='flex items-center my-4 gap-x-4'>
+					<div key={skill.id} className='flex items-center my-4 gap-x-4'>
 						<TooltipProvider>
 							<Tooltip>
 								<TooltipTrigger>

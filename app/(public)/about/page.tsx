@@ -2,7 +2,7 @@ import { Sidebar } from '@/components/blocks/sidebar'
 import AboutBlock from '@/components/blocks/about-block'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import Link from 'next/link'
-import { DotIcon, Mail } from 'lucide-react'
+import { Mail } from 'lucide-react'
 import Image from 'next/image'
 
 import tobi from '@/assets/tobi.png'
@@ -94,8 +94,8 @@ const works = await client.fetch(ABOUT_WORKS_QUERY)
 						Grazie a CS50, ho acquisito competenze in vari linguaggi di programmazione e ho imparato a risolvere problemi complessi in modo efficace.
 					</p>
 					<p className='leading-7 mb-2'>
-						Prima di questo ho intrapreso un corso sulla nota piattaforma <Link href='https://www.oreilly.com/' target='_blannk' className='font-bold'>O'Reilly </Link>
-						chiamato <span className='italic'>"Modern HTML & CSS from the Beginning (Including SASS)"</span>; un videocorso di 24.5 ore creato da Brad Traversy che mi ha 
+						Prima di questo ho intrapreso un corso sulla nota piattaforma <Link href='https://www.oreilly.com/' target='_blannk' className='font-bold'>O&apos;Reilly </Link>
+						chiamato <span className='italic'>&quot;Modern HTML & CSS from the Beginning (Including SASS)&quot;</span>; un videocorso di 24.5 ore creato da Brad Traversy che mi ha 
 						permesso di introdurmi nel mondo del web development.
 					</p>
 				</AboutBlock>
@@ -115,7 +115,7 @@ const works = await client.fetch(ABOUT_WORKS_QUERY)
 					</ul>
 				</AboutBlock>
 				<AboutBlock id='contact' title='Contatti'>
-					<p className='mb-2'>Puoi contattarmi all'indirizzo email: <Link href='mailto:contact@tob.codes' className='underline underline-offset-2'>contact@tob.codes</Link>.</p>
+					<p className='mb-2'>Puoi contattarmi all&apos;indirizzo email: <Link href='mailto:contact@tob.codes' className='underline underline-offset-2'>contact@tob.codes</Link>.</p>
 					<p>Per qualsiasi problema riscontrato su questo sito web si prega di indirizzare le proprie segnalazioni all indirizzo email: <Link href='mailto:help@tob.codes' className='underline underline-offset-2'>help@tob.codes</Link>.</p>
 				</AboutBlock>
 			</ScrollArea>

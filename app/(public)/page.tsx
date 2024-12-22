@@ -7,7 +7,7 @@ import Image from "next/image";
 
 import certificate from '@/assets/certificate.png'
 
-import { HomeIcon, FolderGit2, GraduationCap, LibraryBig, Images } from 'lucide-react'
+import { FolderGit2, GraduationCap, LibraryBig } from 'lucide-react'
 
 export default async function Home() {
   const article = await client.fetch(LAST_ARTICLE_QUERY)
@@ -29,7 +29,7 @@ export default async function Home() {
           <Image src={certificate} alt="Certificate CS50" width={400} height={300} className="w-full rounded-2xl shadow-md" />
           <p className="absolute bottom-3 right-3 bg-gray-200/70 backdrop-blur-sm px-2 py-1 rounded-xl border border-black/20 text-xs md:text-base">HarvardX: CS50&apos;s Introduction to Computer Science</p>
         </div>  
-        <p className="mt-4">Ho ricevuto questo certificato dopo aver conseguito il corso di Harvard "CS50&apos;s Introduction to Computer Science". È stata un'interessante ed approfondita avventura nel mondo dei computer e di come ragionano. Ringrazio particolarmente il professore David J. Malan per la sua abilità nell'insegnamento.</p>
+        <p className="mt-4">Ho ricevuto questo certificato dopo aver conseguito il corso di Harvard &quot;CS50&apos;s Introduction to Computer Science&quot;. È stata un&apos;interessante ed approfondita avventura nel mondo dei computer e di come ragionano. Ringrazio particolarmente il professore David J. Malan per la sua abilità nell&apos;insegnamento.</p>
       </div>
     </section>
   );
