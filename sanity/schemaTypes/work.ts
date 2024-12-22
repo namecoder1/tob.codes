@@ -16,6 +16,10 @@ export const work = defineType({
 			}
 		}),
 		defineField({
+			name: 'link',
+			type: 'url'
+		}),
+		defineField({
 			name: 'wakaLinks',
 			type: 'document',
 			fields: [

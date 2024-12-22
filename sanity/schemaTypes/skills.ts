@@ -14,6 +14,10 @@ export const skill = defineType({
 			options: {
 				hotspot: true
 			}
-		})
+		}),
+		defineField({
+			name: 'progress',
+			type: 'number'
+		}),
 	]
 })

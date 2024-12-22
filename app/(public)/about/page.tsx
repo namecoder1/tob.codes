@@ -1,41 +1,21 @@
-'use client'
-import React, { useEffect, useState } from 'react'
 import { Sidebar } from '@/components/blocks/sidebar'
 import AboutBlock from '@/components/blocks/about-block'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import Link from 'next/link'
-import { Mail } from 'lucide-react'
+import { DotIcon, Mail } from 'lucide-react'
 import Image from 'next/image'
 
 import tobi from '@/assets/tobi.png'
 import CS50 from '@/components/blocks/cs50'
+import Skills from '@/components/blocks/skills'
+import { client } from '@/sanity/lib/client'
+import { ABOUT_WORKS_QUERY } from '@/sanity/lib/queries'
 
-const AboutPage = () => {
-  const [activeSection, setActiveSection] = useState('')
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = document.querySelectorAll('section')
-      let currentActiveSection = ''
-
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop
-        const sectionHeight = section.clientHeight
-        if (window.scrollY >= sectionTop - 100 && window.scrollY < sectionTop + sectionHeight - 100) {
-          currentActiveSection = section.id
-        }
-      })
-
-      setActiveSection(currentActiveSection)
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
+const AboutPage = async () => {
+const works = await client.fetch(ABOUT_WORKS_QUERY)
   return (
     <section className="flex min-h-full gap-x-6">
-      <Sidebar activeSection={activeSection} />
+      <Sidebar />
 			<ScrollArea className="sm:h-[860px] w-fit rounded-md sm:pr-3 fade-in-alternate">
 				<Image src={tobi} className="rounded-full border content-center p-2 bg-gray-100 border-black/20 w-28 mb-3 sm:hidden" width={50} height={50} alt="Foto Tobia Bartolomei" />
 				<div className='sm:pl-5'>
@@ -70,7 +50,7 @@ const AboutPage = () => {
 							</Link>
 						</li>
 						<li className='w-fit border border-black/20 px-2 py-1 rounded-xl text-sm'>
-							<Link href='mailto:info@tob.codes' target='_blank' className='flex items-center justify-center gap-1'>
+							<Link href='mailto:contact@tob.codes' target='_blank' className='flex items-center justify-center gap-1'>
 								<Mail size={20} />
 								<p className='hidden sm:block'>Email</p>
 							</Link>
@@ -102,7 +82,41 @@ const AboutPage = () => {
 					</p>
 				</AboutBlock>
 				<AboutBlock id='skills' title='Competenze'>
-					<p>prova</p>
+					<Skills />
+				</AboutBlock>
+				<AboutBlock id='experience' title='Esperienza'>
+					<p className='leading-7 mb-2'>
+						Ho avuto la fortuna di scoprire il corso di Harvard: CS50 Introduction to Computer Science; mi sono appassionato
+						molto e devo dire che non ci ho messo tanto a completarlo.
+					</p>
+					<p className='leading-7 mb-2'>
+						Il corso è stato incredibilmente <span className='font-bold'>ben strutturato</span> e mi ha fornito una <span className='font-bold'>solida base di conoscenze</span>  in informatica. 
+						Grazie a CS50, ho acquisito competenze in vari linguaggi di programmazione e ho imparato a risolvere problemi complessi in modo efficace.
+					</p>
+					<p className='leading-7 mb-2'>
+						Prima di questo ho intrapreso un corso sulla nota piattaforma <Link href='https://www.oreilly.com/' target='_blannk' className='font-bold'>O'Reilly </Link>
+						chiamato <span className='italic'>"Modern HTML & CSS from the Beginning (Including SASS)"</span>; un videocorso di 24.5 ore creato da Brad Traversy che mi ha 
+						permesso di introdurmi nel mondo del web development.
+					</p>
+				</AboutBlock>
+				<AboutBlock id='projects' title='Progetti'>
+					<ul className='flex flex-col items-center justify-center gap-y-2 my-2'>
+						{works.map((work) => (
+							<Link href={`${work.link}`} target='_blank' key={work.id} className='flex items-start justify-between w-full'>
+								<div className='flex flex-col-reverse items-start justify-start'>
+									<hgroup className='flex flex-col items-start justify-start'>
+										<h3 className='text-lg sm:text-2xl font-bold'>{work.title}</h3>
+										<h4 className='text-lg underline underline-offset-2'>{work.category}</h4>
+									</hgroup>
+								</div>
+								<p className='border py-1.5 px-2 border-black/20 rounded-2xl text-sm sm:text-base'>{work.pubDate}</p>
+							</Link>
+						))}
+					</ul>
+				</AboutBlock>
+				<AboutBlock id='contact' title='Contatti'>
+					<p className='mb-2'>Puoi contattarmi all'indirizzo email: <Link href='mailto:contact@tob.codes' className='underline underline-offset-2'>contact@tob.codes</Link>.</p>
+					<p>Per qualsiasi problema riscontrato su questo sito web si prega di indirizzare le proprie segnalazioni all indirizzo email: <Link href='mailto:help@tob.codes' className='underline underline-offset-2'>help@tob.codes</Link>.</p>
 				</AboutBlock>
 			</ScrollArea>
     </section>

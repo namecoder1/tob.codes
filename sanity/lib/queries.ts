@@ -94,7 +94,8 @@ export const WORK_QUERY = defineQuery(`
 		'projId': wakaLinks.projectId,
   	'projImg': wakaLinks.projectImage,
 		excerpt,
-		body
+		body,
+		link
 	}	
 `)
 
@@ -105,5 +106,24 @@ export const PHOTOS_QUERY = defineQuery(`
 		description,
 		'image': mainImage.asset -> url,
 		'imageAlt': mainImage.alt,
+	}	
+`)
+
+export const SKILLS_QUERY = defineQuery(`
+	*[_type == 'skill'] {
+		'id': _id,
+		title,
+		'image': image.asset -> url,
+		progress
+	}	
+`)
+
+export const ABOUT_WORKS_QUERY = defineQuery(`
+	*[_type == 'work'] {
+		'id': _id,
+		title,
+		pubDate,
+		category,
+		link
 	}	
 `)

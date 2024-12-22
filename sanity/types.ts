@@ -86,6 +86,7 @@ export type Skill = {
     crop?: SanityImageCrop;
     _type: "image";
   };
+  progress?: number;
 };
 
 export type PersImage = {
@@ -149,6 +150,7 @@ export type Work = {
   _rev: string;
   title?: string;
   slug?: Slug;
+  link?: string;
   wakaLinks?: {
     projectId?: string;
     projectImage?: string;
@@ -411,7 +413,7 @@ export type WORKS_QUERYResult = Array<{
   body: BlockContent | null;
 }>;
 // Variable: WORK_QUERY
-// Query: *[_type == 'work' && slug.current == $slug ] [0] {		'id': _id,		title,		'slug': slug.current,		category,		pubDate,		'image': mainImage.asset -> url,		'imageAlt': mainImage.alt,		'projId': wakaLinks.projectId,  	'projImg': wakaLinks.projectImage,		excerpt,		body	}
+// Query: *[_type == 'work' && slug.current == $slug ] [0] {		'id': _id,		title,		'slug': slug.current,		category,		pubDate,		'image': mainImage.asset -> url,		'imageAlt': mainImage.alt,		'projId': wakaLinks.projectId,  	'projImg': wakaLinks.projectImage,		excerpt,		body,		link	}
 export type WORK_QUERYResult = {
   id: string;
   title: string | null;
@@ -424,6 +426,7 @@ export type WORK_QUERYResult = {
   projImg: string | null;
   excerpt: string | null;
   body: BlockContent | null;
+  link: string | null;
 } | null;
 // Variable: PHOTOS_QUERY
 // Query: *[_type == 'persImage'] | order(_createdAt desc) {		'id': _id,		title,		description,		'image': mainImage.asset -> url,		'imageAlt': mainImage.alt,	}
@@ -433,6 +436,23 @@ export type PHOTOS_QUERYResult = Array<{
   description: string | null;
   image: string | null;
   imageAlt: string | null;
+}>;
+// Variable: SKILLS_QUERY
+// Query: *[_type == 'skill'] {		'id': _id,		title,		'image': image.asset -> url,		progress	}
+export type SKILLS_QUERYResult = Array<{
+  id: string;
+  title: string | null;
+  image: string | null;
+  progress: number | null;
+}>;
+// Variable: ABOUT_WORKS_QUERY
+// Query: *[_type == 'work'] {		'id': _id,		title,		pubDate,		category,		link	}
+export type ABOUT_WORKS_QUERYResult = Array<{
+  id: string;
+  title: string | null;
+  pubDate: string | null;
+  category: "BackEnd" | "FrontEnd" | "FullStack" | null;
+  link: string | null;
 }>;
 
 // Query TypeMap
@@ -446,7 +466,9 @@ declare module "@sanity/client" {
     "\n\t*[_type == 'post' && category->slug.current == $category] {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\texcerpt,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t\tcategory->{'slug': slug.current, 'title': title, 'description': description},\n\t\t'totalArticles': count(*[_type == 'post' && category->slug.current == 'sanity'])\n\t}\n": ARTICLES_CATEGORY_QUERYResult;
     "\n\t*[_type == 'work'] | order(_createdAt desc) [0] {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\tcategory,\n\t\tpubDate,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t\texcerpt,\n\t\tbody\n\t}\t\n": LAST_WORK_QUERYResult;
     "\n\t*[_type == 'work' ] | order(_createdAt desc) {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\tcategory,\n\t\tpubDate,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t\texcerpt,\n\t\tbody\n\t}\t\n": WORKS_QUERYResult;
-    "\n\t*[_type == 'work' && slug.current == $slug ] [0] {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\tcategory,\n\t\tpubDate,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t\t'projId': wakaLinks.projectId,\n  \t'projImg': wakaLinks.projectImage,\n\t\texcerpt,\n\t\tbody\n\t}\t\n": WORK_QUERYResult;
+    "\n\t*[_type == 'work' && slug.current == $slug ] [0] {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\tcategory,\n\t\tpubDate,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t\t'projId': wakaLinks.projectId,\n  \t'projImg': wakaLinks.projectImage,\n\t\texcerpt,\n\t\tbody,\n\t\tlink\n\t}\t\n": WORK_QUERYResult;
     "\n\t*[_type == 'persImage'] | order(_createdAt desc) {\n\t\t'id': _id,\n\t\ttitle,\n\t\tdescription,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t}\t\n": PHOTOS_QUERYResult;
+    "\n\t*[_type == 'skill'] {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'image': image.asset -> url,\n\t\tprogress\n\t}\t\n": SKILLS_QUERYResult;
+    "\n\t*[_type == 'work'] {\n\t\t'id': _id,\n\t\ttitle,\n\t\tpubDate,\n\t\tcategory,\n\t\tlink\n\t}\t\n": ABOUT_WORKS_QUERYResult;
   }
 }

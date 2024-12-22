@@ -30,12 +30,15 @@ const WorkPage = async ({ params } : { params: Promise<{slug: string}>}) => {
 					<Pin title={work.category} />
 				</div>
 			</div>
-			<Separator className='my-8' />
+			<Separator className='my-8 bg-black/20' />
 			<Image priority src={`${work.image}`} alt={`${work.imageAlt}`} width={300} height={200} className='w-full rounded-xl my-4 border shadow-sm' quality={100} />
 			<div className='max-w-4xl'>
 				<TextBlock value={work.body} />
 			</div>
-			<Button asChild className='w-full my-4'><Link href='/about'>Contattami<MessageSquareMore className='inline-block' /></Link></Button>
+			<div className='flex gap-2 mt-4 flex-col sm:flex-row'>
+				<Button asChild className='w-full'><Link href='/about'>Contattami<MessageSquareMore className='inline-block' /></Link></Button>
+				<Button asChild className='w-full'><Link target='_blank' href={`${work.link}`}>Visita il sito<MessageSquareMore className='inline-block' /></Link></Button>
+			</div>
 		</div>
 	)
 }

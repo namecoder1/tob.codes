@@ -1,3 +1,4 @@
+'use client'
 import { cn } from "@/lib/utils"
 import Image from "next/image"
 
@@ -5,11 +6,8 @@ import tobi from '@/assets/tobi.png'
 import { Earth } from "lucide-react"
 import Pin from "../ui/pin"
 
-interface SidebarProps {
-  activeSection: string
-}
 
-export function Sidebar({ activeSection }: SidebarProps) {
+export function Sidebar() {
   const sections = [
     { id: 'intro', title: 'Introduzione' },
     { id: 'skills', title: 'Competenze' },
@@ -43,13 +41,9 @@ export function Sidebar({ activeSection }: SidebarProps) {
             key={section.id}
             href={`#${section.id}`}
             onClick={(e) => handleSmoothScroll(e, section.id)}
-            className={cn(
-              "block py-2 px-4 rounded-md transition-colors",
-              activeSection === section.id
-                ? "bg-black text-primary-foreground"
-                : "hover:bg-muted"
-            )}
-          >
+            className=
+              "block py-2 px-4 rounded-md transition-colors"
+            >
             {section.title}
           </a>
         ))}
