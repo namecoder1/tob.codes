@@ -14,7 +14,7 @@ import { ABOUT_WORKS_QUERY } from '@/sanity/lib/queries'
 const AboutPage = async () => {
 const works = await client.fetch(ABOUT_WORKS_QUERY)
   return (
-    <section className="flex min-h-full gap-x-6">
+    <section className="flex min-h-full gap-x-6 pb-8">
       <Sidebar />
 			<ScrollArea className="sm:h-[860px] w-fit rounded-md sm:pr-3 fade-in-alternate">
 				<Image src={tobi} className="rounded-full border content-center p-2 bg-gray-100 border-black/20 w-28 mb-3 sm:hidden" width={50} height={50} alt="Foto Tobia Bartolomei" />
