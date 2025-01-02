@@ -3,6 +3,9 @@ import MainContainer from "@/components/blocks/main-container";
 import MenuBar from "@/components/blocks/menubar";
 import Navbar from "@/components/blocks/navbar";
 
+import { Analytics } from '@vercel/analytics/next';
+
+
 import { Poppins } from 'next/font/google'
 const poppins = Poppins({
   subsets: ['latin'],
@@ -26,6 +29,7 @@ async function FrontendLayout ({
 				</MainContainer>
 			<Footer />
 			</section>
+			<Analytics /> 		
 		</main>
 	)
 }
