@@ -18,7 +18,7 @@ const LastArticle = ({ article } : any) => {
 	} = article
 	return (
 		<article className='fade-in-left-alternate'>
-			<Link href={`/blog/${category.slug}/${slug}`} className='flex flex-col-reverse w-full items-center gap-3 lg:grid lg:grid-cols-2 lg:items-start justify-center lg:gap-2'>
+			<Link href={`/blog/${category.slug}/${slug}`} className='flex flex-col-reverse w-full items-center gap-3 lg:grid lg:grid-cols-2 lg:items-start justify-center lg:gap-5'>
 				<div>
 					<h2 className='heading-md my-3'>{title}</h2>
 					<p className='flex items-center justify-start gap-1.5 border rounded-xl border-black/20 px-3 py-1 my-2 w-fit '><CalendarPlus className='inline-block' />{formatDate(pubDate)}</p>

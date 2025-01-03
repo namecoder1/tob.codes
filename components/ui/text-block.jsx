@@ -29,7 +29,7 @@ const components = {
     h3: ({children}) => <h3 className="text-lg font-semibold mt-8 mb-1">{children}</h3>,
   },
   list: {
-    bullet: ({children}) => <ul className="mt-xl">{children}</ul>
+    bullet: ({children}) => <ul className="mt-xl flex flex-col items-start justify-start">{children}</ul>
   },
   listItem: {
     bullet: ({children}) => <li className="my-5 flex items-center justify-start gap-1"><CircleDashed className="inline-block" size={15} />{children}</li>
