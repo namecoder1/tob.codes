@@ -366,9 +366,11 @@ export type ARTICLE_QUERYResult = {
   pubDate: string | null;
 } | null;
 // Variable: CATEGORIES_QUERY
-// Query: *[_type == 'category' && slug.current == $category] | order(_createdAt desc) {		title	}
+// Query: *[_type == 'category'] | order(_createdAt desc) {		'id': _id,		title,		'slug': slug.current	}
 export type CATEGORIES_QUERYResult = Array<{
+  id: string;
   title: string | null;
+  slug: string | null;
 }>;
 // Variable: ARTICLES_CATEGORY_QUERY
 // Query: *[_type == 'post' && category->slug.current == $category] {		'id': _id,		title,		'slug': slug.current,		excerpt,		'image': mainImage.asset -> url,		'imageAlt': mainImage.alt,		category->{'slug': slug.current, 'title': title, 'description': description},		'totalArticles': count(*[_type == 'post' && category->slug.current == 'sanity'])	}
@@ -462,7 +464,7 @@ declare module "@sanity/client" {
     "\n\t*[_type == 'post'] | order(_createdAt desc) [0] {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\texcerpt,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t\t'category': category -> {title, 'slug': slug.current},\n\t\tpubDate\n\t}\t\n": LAST_ARTICLE_QUERYResult;
     "\n\t*[_type == 'post'] | order(_createdAt desc) {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\texcerpt,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t\t'category': category -> {title, 'slug': slug.current},\n\t\tpubDate\n\t}\t\n": ARTICLES_QUERYResult;
     "\n\t*[_type == 'post' && slug.current == $slug][0] {\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\texcerpt,\n\t\t'category': category -> {title, 'slug': slug.current},\n\t\t'body': body[],\n\t\tpubDate\n\t}\t\n": ARTICLE_QUERYResult;
-    "\n\t*[_type == 'category' && slug.current == $category] | order(_createdAt desc) {\n\t\ttitle\n\t}\t\n": CATEGORIES_QUERYResult;
+    "\n\t*[_type == 'category'] | order(_createdAt desc) {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current\n\t}\t\n": CATEGORIES_QUERYResult;
     "\n\t*[_type == 'post' && category->slug.current == $category] {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\texcerpt,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t\tcategory->{'slug': slug.current, 'title': title, 'description': description},\n\t\t'totalArticles': count(*[_type == 'post' && category->slug.current == 'sanity'])\n\t}\n": ARTICLES_CATEGORY_QUERYResult;
     "\n\t*[_type == 'work'] | order(_createdAt desc) [0] {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\tcategory,\n\t\tpubDate,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t\texcerpt,\n\t\tbody\n\t}\t\n": LAST_WORK_QUERYResult;
     "\n\t*[_type == 'work' ] | order(_createdAt desc) {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\tcategory,\n\t\tpubDate,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t\texcerpt,\n\t\tbody\n\t}\t\n": WORKS_QUERYResult;

@@ -55,9 +55,9 @@ export const work = defineType({
 			type: 'string',
 			options: {
 				list: [
-					{title: '1', value: 'FrontEnd'},
-					{title: '2', value: 'BackEnd'},
-					{title: '3', value: 'FullStack'},
+					{title: 'FE', value: 'Front-end'},
+					{title: 'BE', value: 'Back-end'},
+					{title: 'FS', value: 'Full-stack'},
 				]
 			}
 		}),

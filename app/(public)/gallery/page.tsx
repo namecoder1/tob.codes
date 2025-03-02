@@ -16,13 +16,22 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import Pin from '@/components/ui/pin'
+import { Separator } from '@/components/ui/separator'
 
 
 const GalleryPage = async () => {
 	const images = await client.fetch(PHOTOS_QUERY)
 	return (
 		<section>
-			<h1 className='fade-in-alternate heading-lg flex items-center justify-start gap-1.5'><Images className='inline-block' size={42} />Gallery</h1>
+			<h1 className='fade-in-alternate heading-lg flex items-center justify-start gap-2.5'>
+				<div className="inline-block">
+          <div className="bg-[#dca25b] border-2 border-yellow-800/20 rounded-2xl flex p-[8px] w-fit">
+            <Images className="inline-block" size={28} />
+          </div>
+        </div>
+				Gallery
+			</h1>
+			<Separator className='my-6 bg-black/20' />
 			<p className='mt-2 mb-3'>Questa sezione racchiude le mie foto preferite e quelle a cui sono legato. Alcune provengono da viaggi ed esperienze che ho fatto durante gli anni, altre hanno un valore sentimentale.</p>
 			<p className='mt-2 mb-3'>Tutte le immagini sono state scattate con il mio telefono; alcune con un iPhone 11, mentre le più recenti provengono dal mio iPhone 15. </p>
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px] mt-10 pb-10">

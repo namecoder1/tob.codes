@@ -8,14 +8,14 @@ const Pin = ({
  } : { slug?: string, title: string | null, className?: string}) => {
 	if(!slug) {
 		return (
-			<div className={`border border-black/20 px-2 py-1 rounded-xl w-fit bg-white/20 backdrop-blur-sm ${className}`}>
+			<div className={`${className} border border-black/20 px-2 py-1 rounded-xl w-fit bg-white/20 backdrop-blur-sm`}>
 				<p className='text-sm'>{title}</p>
 			</div>
 		)
 	}
 	return (
 		<Link href={`/blog/${slug}`}>
-			<div className={`border border-black/20 px-2 py-1 rounded-xl w-fit bg-white/20 backdrop-blur-sm ${className}`}>
+			<div className={`${className} border border-black/20 px-2 py-1 rounded-xl w-fit bg-white/20 backdrop-blur-sm`}>
 				<p className='text-sm'>{title}</p>
 			</div>
 		</Link>

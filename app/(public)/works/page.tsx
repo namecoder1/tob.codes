@@ -12,7 +12,14 @@ const WorkPage = async () => {
   const work = await client.fetch(LAST_WORK_QUERY)
 	return (
     <section className='fade-in-alternate'>
-      <h1 className='heading-lg mb-8 flex items-center justify-start gap-1.5'><FolderGit2 className='inline-block' size={42} />Progetti</h1>
+      <h1 className='heading-lg mb-8 flex items-center justify-start gap-2.5'>
+        <div className="inline-block">
+          <div className="bg-[#FFDD4B] border-2 border-yellow-700/20 rounded-2xl flex p-[8px] w-fit">
+            <FolderGit2 className="inline-block" size={28} />
+          </div>
+        </div>
+        Progetti
+      </h1>
       <LastWork work={work} />
       <Separator className='my-10 md:my-16' />
 			<h2 className='heading-md mb-4'>Tutti i progetti</h2>

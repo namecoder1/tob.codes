@@ -22,12 +22,12 @@ const ArticlePage = async ({ params } : { params: Promise<{slug: string}>}) => {
 	}
 	return (
 		<article className='fade-in-alternate'>
-			<Button asChild className='mb-5'><Link href='/blog'><Undo className='inline-block' />Torna indietro</Link></Button>
+			<Button asChild className='mb-10'><Link href='/blog'><Undo className='inline-block' />Torna indietro</Link></Button>
 			<div>
 				<h1 className='heading-lg'>{article.title}</h1>
 				<div className='flex items-center justify-between mt-4'>
 					<div className='flex items-center justify-center gap-2.5'>
-						<Image src={tobi} alt='Foto di Tobia Bartolomei' width={30} height={30} className='border border-black/20 bg-white p-0.5 rounded-full w-8 aspect-square content-center shadow-md' />
+						<Image src={tobi} alt='Foto di Tobia Bartolomei' width={30} height={30} className='border border-black/20 bg-white p-1 rounded-full w-10 aspect-square content-center shadow-md' />
 						<p className='flex flex-col items-start justify-center -gap-1'>
 							<span className='font-semibold text-sm'>{formatDate(article.pubDate)}</span>
 							<span className='text-xs'>Tobia Bartolomei</span>

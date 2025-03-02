@@ -23,7 +23,7 @@ const WorkPage = async ({ params } : { params: Promise<{slug: string}>}) => {
 	// const wakaUser = '018edc23-7885-44d3-8b1a-efd38be8a6f6'
 	return (
 		<div className='fade-in-alternate'>
-			<Button asChild className='mb-5 fade-in-left-alternate'><Link href='/blog'><Undo className='inline-block' />Torna indietro</Link></Button>
+			<Button asChild className='mb-10 fade-in-left-alternate'><Link href='/blog'><Undo className='inline-block' />Torna indietro</Link></Button>
 			<div>
 				<div className='flex justify-between items-center'>
 					<h1 className='heading-md max-w-40 sm:max-w-full'>{work.title}</h1>

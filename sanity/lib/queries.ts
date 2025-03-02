@@ -37,8 +37,10 @@ export const ARTICLE_QUERY = defineQuery(`
 	}	
 `)
 export const CATEGORIES_QUERY = defineQuery(`
-	*[_type == 'category' && slug.current == $category] | order(_createdAt desc) {
-		title
+	*[_type == 'category'] | order(_createdAt desc) {
+		'id': _id,
+		title,
+		'slug': slug.current
 	}	
 `)
 export const ARTICLES_CATEGORY_QUERY = defineQuery(`

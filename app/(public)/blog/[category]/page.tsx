@@ -11,7 +11,7 @@ const CategoryPage = async ({ params } : { params: Promise<{category: string}>})
 	const articles = await client.fetch(ARTICLES_CATEGORY_QUERY, { category })
 	return (
 		<section className='fade-in-alternate'>
-			<Button asChild className='mb-5'><Link href='/blog'><Undo className='inline-block' />Torna indietro</Link></Button>
+			<Button asChild className='mb-10'><Link href='/blog'><Undo className='inline-block' />Torna indietro</Link></Button>
 			<hgroup className='mb-8 flex flex-col items-start justify-center gap-y-2'>
 				<h1 className='heading-lg fade-in-left-alternate'><span className='mr-0.5'>#</span>{articles[0]?.category?.title}</h1>
 				<h2>Articoli totali nella categoria: <span className='fade-in-top-alternate bg-gray-200 border border-black/20 py-1 px-2 rounded-md ml-0.5'>{articles[0]?.totalArticles}</span></h2>
