@@ -6,7 +6,6 @@ import LastArticle from '@/components/blocks/last-article'
 
 import { LibraryBig } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
-import Link from 'next/link'
 import Pin from '@/components/ui/pin'
 
 
