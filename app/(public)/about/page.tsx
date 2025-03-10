@@ -21,7 +21,7 @@ const works = await client.fetch(ABOUT_WORKS_QUERY)
 				<div className='sm:pl-5'>
 					<hgroup>
 						<h1 className='text-5xl font-extrabold tracking-tight max-w-[100px] sm:max-w-full'>Tobia Bartolomei</h1>
-						<h2 className='text-3xl font-normal text-balance'>Junior Front-end Web Developer</h2>
+						<h2 className='text-3xl font-normal text-balance'>Junior Front-end Developer</h2>
 					</hgroup>
 					<CS50 />	
 					<ul className='mt-4 flex items-center justify-start gap-x-1.5'>

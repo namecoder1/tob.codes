@@ -7,15 +7,14 @@ import { ChevronRight } from 'lucide-react'
 const Hero = () => {
 	return (
 		<section id='hero' className='flex flex-col items-center justify-center text-center min-h-[55vh] my-10'>
-			<h1 className='text-7xl md:text-8xl font-bold leading-tight'>
+			<h1 className='text-[65px] flex flex-col gap-0 w-fit text-7xl md:text-8xl font-bold leading-tight'>
 				<span>Creating</span>{' '}
 				<span className='bg-gradient-to-r from-yellow-400 via-red-400 to-blue-500 text-transparent bg-clip-text'>exceptional</span>
-				<br />
 				<span>websites</span>
 			</h1>
 			
 			<p className='text-gray-600 text-xl md:text-2xl mt-8 max-w-2xl'>
-				Ciao, sono Tobia Bartolomei, un Junior Front-end Web Developer, appassionato di tech, AI e finanza personale.
+				Ciao, sono Tobia Bartolomei, un Junior Front-end Developer, appassionato di tech, AI e finanza personale.
 			</p>
 
 			<div className='flex gap-1 items-center justify-center border border-black/20 bg-black/80 hover:bg-black duration-200 rounded-full w-fit p-2 mt-12'>

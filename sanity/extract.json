@@ -965,15 +965,15 @@
           "of": [
             {
               "type": "string",
-              "value": "FrontEnd"
+              "value": "Front-end"
             },
             {
               "type": "string",
-              "value": "BackEnd"
+              "value": "Back-end"
             },
             {
               "type": "string",
-              "value": "FullStack"
+              "value": "Full-stack"
             }
           ]
         },

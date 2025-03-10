@@ -168,7 +168,7 @@ export type Work = {
     _type: "image";
   };
   excerpt?: string;
-  category?: "FrontEnd" | "BackEnd" | "FullStack";
+  category?: "Front-end" | "Back-end" | "Full-stack";
   pubDate?: string;
   body?: BlockContent;
 };
@@ -394,7 +394,7 @@ export type LAST_WORK_QUERYResult = {
   id: string;
   title: string | null;
   slug: string | null;
-  category: "BackEnd" | "FrontEnd" | "FullStack" | null;
+  category: "Back-end" | "Front-end" | "Full-stack" | null;
   pubDate: string | null;
   image: string | null;
   imageAlt: string | null;
@@ -407,7 +407,7 @@ export type WORKS_QUERYResult = Array<{
   id: string;
   title: string | null;
   slug: string | null;
-  category: "BackEnd" | "FrontEnd" | "FullStack" | null;
+  category: "Back-end" | "Front-end" | "Full-stack" | null;
   pubDate: string | null;
   image: string | null;
   imageAlt: string | null;
@@ -420,7 +420,7 @@ export type WORK_QUERYResult = {
   id: string;
   title: string | null;
   slug: string | null;
-  category: "BackEnd" | "FrontEnd" | "FullStack" | null;
+  category: "Back-end" | "Front-end" | "Full-stack" | null;
   pubDate: string | null;
   image: string | null;
   imageAlt: string | null;
@@ -453,7 +453,7 @@ export type ABOUT_WORKS_QUERYResult = Array<{
   id: string;
   title: string | null;
   pubDate: string | null;
-  category: "BackEnd" | "FrontEnd" | "FullStack" | null;
+  category: "Back-end" | "Front-end" | "Full-stack" | null;
   link: string | null;
 }>;
 

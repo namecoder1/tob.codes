@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import {PortableText} from '@portabletext/react';
-import { CircleDashed } from "lucide-react";
+import { Dot } from "lucide-react";
 import Link from "next/link";
 
 const imageComponent = (props) => 
@@ -21,6 +21,8 @@ const imageComponent = (props) =>
   ) : null;
 
 
+
+
 const components = {
   block: {
     normal: ({children}) => <p className="mb-3 leading-7">{children}</p>,
@@ -32,7 +34,7 @@ const components = {
     bullet: ({children}) => <ul className="mt-xl flex flex-col items-start justify-start">{children}</ul>
   },
   listItem: {
-    bullet: ({children}) => <li className="my-5 flex items-center justify-start gap-1"><CircleDashed className="inline-block" size={15} />{children}</li>
+    bullet: ({children}) => <li className="my-5 flex items-start gap-2"><Dot className="mt-1.5 flex-shrink-0" size={14} /><div>{children}</div></li>
   },
   types: {
     image: imageComponent

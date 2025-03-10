@@ -39,8 +39,8 @@ const ArticlePage = async ({ params } : { params: Promise<{slug: string}>}) => {
 				</div>
 			</div>
 			<Separator className='my-8 bg-black/20' />
-			<div className='max-w-4xl fade-in-left-alternate'>
-				<TextBlock value={article.body} />
+			<div className='max-w-4xl fade-in-left-alternate prose prose-lg prose-slate'>
+				<TextBlock value={article.body}/>
 			</div>
 
 		</article>
