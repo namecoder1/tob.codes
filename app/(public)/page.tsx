@@ -4,8 +4,10 @@ import { LAST_ARTICLE_QUERY, LAST_WORK_QUERY } from "@/sanity/lib/queries";
 import LastArticle from "@/components/blocks/last-article";
 import LastWork from "@/components/blocks/last-work";
 import Image from "next/image";
+import CertificateSwapper from "@/components/blocks/cert-swapper";
 
-import certificate from '@/assets/certificate.png'
+import x_certificate from '@/assets/cs50x-cert.png'
+import p_certificate from '@/assets/cs50p-cert.png'
 
 import { BookOpenText, FolderGit2, GraduationCap, LibraryBig } from 'lucide-react'
 import { Button } from "@/components/ui/button";
@@ -54,13 +56,18 @@ export default async function Home() {
           </div>
           Education
         </h2>
-        <div className="relative w-full h-full py-4 bg-white object-fit rounded-2xl shadow-md">
-          <Image src={certificate} alt="Certificate CS50" width={400} height={250} className="w-full h-full object-fit" />
-          <p className="absolute bottom-3 right-3 bg-gray-200/70 backdrop-blur-sm px-2 py-1 rounded-xl border border-black/20 text-xs md:text-base">HarvardX: CS50&apos;s Introduction to Computer Science</p>
+        <div className="relative w-full h-full py-4 bg-white rounded-2xl shadow-md flex flex-col items-center">
+          <div className="certificate-container relative w-full">
+            <CertificateSwapper 
+              xCertificate={x_certificate} 
+              pCertificate={p_certificate} 
+            />
+          </div>
         </div>  
-        <p className="mt-4">Ho ricevuto questo certificato dopo aver conseguito il corso di Harvard &quot;CS50&apos;s Introduction to Computer Science&quot;. È stata un&apos;interessante ed approfondita avventura nel mondo dei computer e di come ragionano. Ringrazio particolarmente il professore <span className="font-bold">David J. Malan</span> per la sua abilità nell&apos;insegnamento.</p>
+        <p className="mt-4">Ho ricevuto questo certificato dopo aver conseguito il corso di Harvard &quot;CS50&apos;s Introduction to Computer Science&quot;. È stata un&apos;interessante ed approfondita avventura nel mondo dei computer e di come ragionano. 
+          Ho successivamente completato il corso su Python con l&apos;obiettivo di imparare tutto ciò che concerne il mondo dell&apos;AI e degli LLM.
+        </p>
       </div>
     </section>
   );
 }
-

@@ -94,6 +94,11 @@ const works = await client.fetch(ABOUT_WORKS_QUERY)
 						Grazie a CS50, ho acquisito competenze in vari linguaggi di programmazione e ho imparato a risolvere problemi complessi in modo efficace.
 					</p>
 					<p className='leading-7 mb-2'>
+						Ho successivamente completato il corso su Python con l&apos;obiettivo di imparare tutto ciò che concerne il mondo dell&apos;AI e degli LLM.
+						Ho imparato a pensare in un modo più <span className='font-bold'>logico</span> e a <span className='font-bold'>ragionare in modo più astratto</span>, familiari
+						con <span className='font-bold'>programmazione funzionale e programmazione orientata agli oggetti</span> e con l&apos;uso degli <span className='font-bold'>algoritmi</span>.
+					</p>
+					<p className='leading-7 mb-2'>
 						Prima di questo ho intrapreso un corso sulla nota piattaforma <Link href='https://www.oreilly.com/' target='_blannk' className='font-bold'>O&apos;Reilly </Link>
 						chiamato <span className='italic'>&quot;Modern HTML & CSS from the Beginning (Including SASS)&quot;</span>; un videocorso di 24.5 ore creato da Brad Traversy che mi ha 
 						permesso di introdurmi nel mondo del web development.
