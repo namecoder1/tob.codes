@@ -3,7 +3,6 @@ import Hero from "@/components/blocks/hero";
 import { LAST_ARTICLE_QUERY, LAST_WORK_QUERY } from "@/sanity/lib/queries";
 import LastArticle from "@/components/blocks/last-article";
 import LastWork from "@/components/blocks/last-work";
-import Image from "next/image";
 import CertificateSwapper from "@/components/blocks/cert-swapper";
 
 import x_certificate from '@/assets/cs50x-cert.png'
