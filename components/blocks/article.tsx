@@ -17,7 +17,7 @@ const Article = ({ article } : any ) => {
 	return (
 		<article className="fade-in-alternate">
 			<div className="relative">
-					<Image priority src={image} alt={imageAlt} width={500} height={400} className='w-full shadow-md rounded-xl border border-gray-300' />			
+				<Image priority src={image} alt={imageAlt} width={500} height={400} className='w-full md:w-[398px] shadow-md rounded-xl border border-gray-300' />			
 				<Link href={`/blog/${category.slug}`}>
 					<Pin className="absolute top-3 right-3" title={category.title}/>
 				</Link>

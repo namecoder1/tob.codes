@@ -23,7 +23,10 @@ const WorkPage = async () => {
         </h1>
         <Separator className='bg-black/20' />
       </div>
-      <LastWork work={work} />
+      <div>
+        <h2 className='heading-md mb-4'>Ultimo Progetto</h2>
+        <LastWork work={work} />
+      </div>
       <Separator className='my-10 md:my-16' />
 			<h2 className='heading-md mb-4'>Tutti i progetti</h2>
       <div className='grid grid-cols-1 gap-y-10'>

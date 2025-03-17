@@ -10,13 +10,15 @@ import CS50 from '@/components/blocks/cs50'
 import Skills from '@/components/blocks/skills'
 import { client } from '@/sanity/lib/client'
 import { ABOUT_WORKS_QUERY } from '@/sanity/lib/queries'
+import ProgressBar from '@/components/blocks/progress-bar'
 
 const AboutPage = async () => {
 const works = await client.fetch(ABOUT_WORKS_QUERY)
   return (
     <section className="flex min-h-full gap-x-6 pb-8">
       <Sidebar />
-			<ScrollArea className="sm:h-[860px] w-fit rounded-md sm:pr-3 fade-in-alternate">
+			<div className='flex w-full flex-col gap-y-6'>
+				<ScrollArea className="sm:h-[860px] w-fit rounded-md sm:pr-3 fade-in-alternate">
 				<Image src={tobi} className="rounded-full border content-center p-2 bg-gray-100 border-black/20 w-28 mb-3 sm:hidden" width={50} height={50} alt="Foto Tobia Bartolomei" />
 				<div className='sm:pl-5'>
 					<hgroup>
@@ -114,7 +116,7 @@ const works = await client.fetch(ABOUT_WORKS_QUERY)
 										<h4 className='text-lg underline underline-offset-2'>{work.category}</h4>
 									</hgroup>
 								</div>
-								<p className='border py-1.5 px-2 border-black/20 rounded-2xl text-sm sm:text-base'>{work.pubDate}</p>
+								<p className='border py-1.5 px-2 border-black/20 rounded-2xl text-[10px] sm:text-sm md:text-base whitespace-nowrap'>{work.pubDate}</p>
 							</Link>
 						))}
 					</ul>
@@ -124,6 +126,13 @@ const works = await client.fetch(ABOUT_WORKS_QUERY)
 					<p>Per qualsiasi problema riscontrato su questo sito web si prega di indirizzare le proprie segnalazioni all indirizzo email: <Link href='mailto:help@tob.codes' className='underline underline-offset-2'>help@tob.codes</Link>.</p>
 				</AboutBlock>
 			</ScrollArea>
+			<div className='w-full mt-32 mb-16 flex flex-col gap-y-6'>
+				<h2 className='heading-lg mb-4 flex items-center gap-2'>
+					Progresso Attuale
+				</h2>
+				<ProgressBar />
+			</div>
+			</div>
     </section>
   )
 

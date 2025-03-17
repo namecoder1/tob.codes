@@ -38,7 +38,7 @@ export default async function Home() {
           </div>
           Ultimo Articolo
         </h2>
-        <LastArticle article={article} />
+        <LastArticle article={article} showTitle={false} />
         <Button className="w-fit mt-10 mx-auto" asChild>
           <Link href="/blog" className="flex items-center gap-1">
             <BookOpenText className="inline-block" />
