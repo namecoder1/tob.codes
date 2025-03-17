@@ -15,8 +15,6 @@ const BlogPage = async () => {
 	const lastArticle = await client.fetch(LAST_ARTICLE_QUERY)
 	const categories = await client.fetch(CATEGORIES_QUERY)
 
-	console.log(categories)
-
 	return (
 		<div className='fade-in-alternate'>
 			<div className='flex flex-col gap-3 mb-4'>

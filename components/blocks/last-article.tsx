@@ -18,11 +18,11 @@ const LastArticle = ({ article, showTitle = true } : any) => {
 
 	if (showTitle) {
 		return (
-			<div className='fade-in-left-alternate border border-black/20 rounded-3xl p-5 relative mt-6'>
-				<h2 className='heading-md absolute -top-5 left-4 bg-[#EBEBEB] px-3 py-1 border border-black/20 rounded-2xl flex items-center gap-2'>
+			<div className='fade-in-left-alternate border border-black/20 bg-[#f3f3f3] rounded-3xl p-5 relative mt-6'>
+				<h2 className='heading-md absolute -top-5 left-4 bg-[#f3f3f3] px-3 py-1 border border-black/20 rounded-2xl flex items-center gap-2'>
 				Ultimo Articolo
 			</h2>
-			<article className=' mt-6'>
+			<article className='mt-6'>
 				<Link href={`/blog/${category.slug}/${slug}`} className='flex flex-col-reverse w-full items-center gap-3 lg:grid lg:grid-cols-2 lg:items-start justify-center lg:gap-5'>
 					<div>
 						<h2 className='heading-md my-3'>{title}</h2>
@@ -40,7 +40,7 @@ const LastArticle = ({ article, showTitle = true } : any) => {
 	}
 
 	return (
-		<article className='fade-in-left-alternate border border-black/20 rounded-3xl p-4 relative mt-6 mt-10'>
+		<article className='fade-in-left-alternate border bg-[#f3f3f3] border-black/20 rounded-3xl p-5 relative mt-6'>
 			<Link href={`/blog/${category.slug}/${slug}`} className='flex flex-col-reverse w-full items-center gap-3 lg:grid lg:grid-cols-2 lg:items-start justify-center lg:gap-5'>
 				<div>
 					<h2 className='heading-md my-3'>{title}</h2>
