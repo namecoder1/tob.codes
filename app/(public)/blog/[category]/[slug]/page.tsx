@@ -13,32 +13,8 @@ import Image from 'next/image'
 import { Separator } from '@/components/ui/separator'
 import Pin from '@/components/ui/pin'
 
-type SanityImage = {
-	_type: 'image'
-	asset: {
-		_ref: string
-		_type: 'reference'
-	}
-	url?: string
-	width?: number
-	height?: number
-	alt?: string
-}
-
-type Article = {
-	title: string | null
-	excerpt: string | null
-	pubDate: string | null
-	mainImage: SanityImage | null
-	category?: {
-		title: string | null
-		slug: string | null
-	} | null
-	body: any[] | null
-}
-
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-	const article = await client.fetch<Article>(ARTICLE_QUERY, { slug: params.slug })
+	const article = await client.fetch(ARTICLE_QUERY, { slug: params.slug })
 	
 	if (!article) {
 		return {
@@ -59,20 +35,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 			type: 'article',
 			publishedTime: article.pubDate || undefined,
 			authors: ['Tobia Bartolomei'],
-			images: article.mainImage?.url ? [
-				{
-					url: article.mainImage.url,
-					width: article.mainImage.width || 1200,
-					height: article.mainImage.height || 630,
-					alt: article.mainImage.alt || title
-				}
-			] : []
+			images: article.mainImage || undefined
 		},
 		twitter: {
 			card: 'summary_large_image',
 			title: `${title} | tob.codes`,
 			description,
-			images: article.mainImage?.url ? [article.mainImage.url] : []
+			images: article.mainImage || undefined
 		}
 	}
 }
