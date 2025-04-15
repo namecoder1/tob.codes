@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 		title: 'Blog | tob.codes',
 		description: 'Articoli, tutorial e guide per sviluppatori web',
 		images: [
-			{ url: 'https://tob.codes/og-image.png' }
+			{ url: 'https://tob.codes/og-image.jpeg' }
 		]
 	}
 }

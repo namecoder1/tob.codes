@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 		title: 'Progetti | tob.codes',
 		description: 'Progetti per clienti e personali realizzati da Tobia Bartolomei',
 		images: [
-			{ url: 'https://tob.codes/og-image.png' }
+			{ url: 'https://tob.codes/og-image.jpeg' }
 		]
 	}
 }

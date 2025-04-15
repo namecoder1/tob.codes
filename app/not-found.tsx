@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 		title: '404 | tob.codes',
 		description: 'Pagina non trovata',
 		images: [
-			{ url: 'https://tob.codes/og-image.png' }
+			{ url: 'https://tob.codes/og-image.jpeg' }
 		]
 	}
 }

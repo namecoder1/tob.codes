@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: 'Home | tob.codes',
     description: 'Sviluppatore web appassionato di tecnologia e innovazione. Portfolio, progetti e articoli su web development, React, Next.js e molto altro.',
     images: [
-      { url: 'https://tob.codes/og-image.png' }
+      { url: 'https://tob.codes/og-image.jpeg' }
     ]
   },
   twitter: {
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: 'Home | tob.codes',
     description: 'Sviluppatore web appassionato di tecnologia e innovazione. Portfolio, progetti e articoli su web development, React, Next.js e molto altro.',
     images: [
-      { url: 'https://tob.codes/og-image.png' }
+      { url: 'https://tob.codes/og-image.jpeg' }
     ]
   }
 }

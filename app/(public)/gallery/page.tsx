@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 		title: 'Gallery | tob.codes',
 		description: 'Galleria di immagini di Tobia Bartolomei',
 		images: [
-			{ url: 'https://tob.codes/og-image.png' }
+			{ url: 'https://tob.codes/og-image.jpeg' }
 		]
 	}
 }

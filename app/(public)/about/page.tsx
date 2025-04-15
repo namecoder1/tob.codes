@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 		title: 'About | tob.codes',
 		description: 'Informazioni su Tobia Bartolomei, sviluppatore web e programmatore',
 		images: [
-			{ url: 'https://tob.codes/og-image.png' }
+			{ url: 'https://tob.codes/og-image.jpeg' }
 		]
 	}
 }
