@@ -14,6 +14,9 @@ import Pin from '@/components/ui/pin'
 import { MessageSquareMore } from 'lucide-react'
 import { Metadata } from 'next'
 
+// Add revalidation to ensure content is fresh
+export const revalidate = 60
+
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
 	const work = await client.fetch(WORK_QUERY, { slug: params.slug })
 	

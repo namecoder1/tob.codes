@@ -13,6 +13,9 @@ import Image from 'next/image'
 import { Separator } from '@/components/ui/separator'
 import Pin from '@/components/ui/pin'
 
+// Add revalidation to ensure content is fresh
+export const revalidate = 60
+
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
 	const article = await client.fetch(ARTICLE_QUERY, { slug: params.slug })
 	

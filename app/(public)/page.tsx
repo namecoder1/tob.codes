@@ -13,6 +13,9 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Metadata } from "next";
 
+// Add revalidation to ensure content is fresh
+export const revalidate = 60
+
 export const metadata: Metadata = {
   title: 'Home | tob.codes',
   description: 'Sviluppatore web appassionato di tecnologia e innovazione. Portfolio, progetti e articoli su web development, React, Next.js e molto altro.',

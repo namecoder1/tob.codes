@@ -7,6 +7,9 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import React from 'react'
 
+// Add revalidation to ensure content is fresh
+export const revalidate = 60
+
 export async function generateMetadata({ params }: { params: { category: string } }): Promise<Metadata> {
 	const category = await client.fetch(ARTICLES_CATEGORY_QUERY, { category: params.category })
 	

@@ -11,6 +11,9 @@ export const metadata: Metadata = {
 	description: 'Mappa del sito di Tobia Bartolomei',
 }
 
+// Add revalidation to ensure content is fresh
+export const revalidate = 60
+
 const SitemapPage = async () => {
 	// Fetch all dynamic content from Sanity
 	const [articles, works, photos, categories, totalArticles] = await Promise.all([

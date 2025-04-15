@@ -31,6 +31,8 @@ export const metadata: Metadata = {
 	}
 }
 
+// Add revalidation to ensure content is fresh
+export const revalidate = 60
 
 const GalleryPage = async () => {
 	const images = await client.fetch(PHOTOS_QUERY)

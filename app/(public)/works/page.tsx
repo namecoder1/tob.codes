@@ -20,6 +20,9 @@ export const metadata: Metadata = {
 	}
 }
 
+// Add revalidation to ensure content is fresh
+export const revalidate = 60
+
 const WorkPage = async () => {
   const works = await client.fetch(WORKS_QUERY)
   const work = await client.fetch(LAST_WORK_QUERY)

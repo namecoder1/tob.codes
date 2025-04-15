@@ -12,6 +12,9 @@ import { Metadata } from 'next'
 
 const POSTS_PER_PAGE = 4
 
+// Add revalidation to ensure content is fresh
+export const revalidate = 60
+
 export const metadata: Metadata = {
 	title: 'Blog | tob.codes',
 	description: 'Articoli, tutorial e guide per sviluppatori web',
