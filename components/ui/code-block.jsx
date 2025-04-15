@@ -15,9 +15,9 @@ const CodeBlock = ({ value }) => {
   };
 
   return (
-    <div className="my-2 rounded-lg overflow-hidden border border-neutral-700 shadow-lg">
+    <div className="my-2 rounded-3xl overflow-hidden border border-neutral-700 shadow-lg">
       {filename && (
-        <div className="bg-neutral-800 text-gray-200 px-4 py-2 text-sm font-mono border-b border-slate-700 flex items-center">
+        <div className="bg-neutral-800 text-gray-200 px-5 py-3 text-sm font-mono border-b border-slate-700 flex items-center">
           <span className="mr-2">📄</span>
           {filename}
         </div>

@@ -3,7 +3,7 @@ import logo from '@/assets/logo.png'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { Mail } from 'lucide-react'
+import { Mail, Map } from 'lucide-react'
 
 const Footer = () => {
 	const currentYear = new Date().getFullYear()
@@ -11,7 +11,10 @@ const Footer = () => {
 		<footer className='fade-in-alternate flex flex-col gap-y-4 sm:flex-row mt-20 mb-20 md:mb-4 items-center justify-between mx-5'>
 			<div className='flex items-center justify-center gap-4'>
 				<Image src={logo} width={20} height={20} alt='Logo del sito' className='w-8'/>
-				<p>&copy; {currentYear} | <span className='font-medium'>tob.codes</span></p>
+				<p className='flex flex-col items-start justify-start'>
+					<span>&copy; {currentYear} | <span className='font-medium'>tob.codes</span></span>
+					<Link href='/sitemap' className='text-sm flex items-center justify-center gap-1 hover:underline underline-offset-2'><Map size={14} />Sitemap</Link>
+				</p>
 			</div>
 			<ul className='flex items-center justify-center gap-2'>
 				<li>

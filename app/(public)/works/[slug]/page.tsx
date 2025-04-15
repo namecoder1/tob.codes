@@ -12,6 +12,39 @@ import { Undo } from 'lucide-react'
 import Pin from '@/components/ui/pin'
 
 import { MessageSquareMore } from 'lucide-react'
+import { Metadata } from 'next'
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+	const work = await client.fetch(WORK_QUERY, { slug: params.slug })
+	
+	if (!work) {
+		return {
+			title: 'Progetto non trovato',
+			description: 'Il progetto richiesto non è stato trovato'
+		}
+	}
+
+	const description = work.excerpt?.slice(0, 155) + '...' || 'Nessuna descrizione disponibile'
+	const title = work.title || 'Progetto non trovato'
+
+	return {
+		title: `${title} | tob.codes`,
+		description,
+		openGraph: {
+			title: `${title} | tob.codes`,
+			description,
+			type: 'article',
+			authors: ['Tobia Bartolomei'],
+			images: work.image || undefined
+		},
+		twitter: {
+			card: 'summary_large_image',
+			title: `${title} | tob.codes`,
+			description,
+			images: work.image || undefined
+		}
+	}
+}
 
 const WorkPage = async ({ params } : { params: Promise<{slug: string}>}) => {
 	const slug = (await params).slug
@@ -20,7 +53,6 @@ const WorkPage = async ({ params } : { params: Promise<{slug: string}>}) => {
 		notFound();
 	}
 
-	// const wakaUser = '018edc23-7885-44d3-8b1a-efd38be8a6f6'
 	return (
 		<div className='fade-in-alternate'>
 			<Button asChild className='mb-10 fade-in-left-alternate'><Link href='/blog'><Undo className='inline-block' />Torna indietro</Link></Button>

@@ -25,7 +25,7 @@ export function Sidebar() {
   }
 
   return (
-    <aside className="fade-in-left-alternate w-72 hidden sm:block rounded-lg shadow-xl bg-white/40 backdrop-blur-md h-fit overflow-y-auto p-4 border-r">
+    <aside className="fade-in-left-alternate w-72 hidden sm:block rounded-3xl shadow-xl bg-white/40 backdrop-blur-md h-fit overflow-y-auto p-4 border-r">
       <div className="px-4 flex flex-col items-start justify-center mb-4">
         <Image src={tobi} className="rounded-full border content-center p-2 bg-gray-100 border-black/20 w-1/2" width={100} height={100} alt="Foto Tobia Bartolomei" />
         <p className="flex items-center justify-start gap-1 my-4 text-sm"><Earth className="inline-block" size={15} />Pesaro, Italy</p>

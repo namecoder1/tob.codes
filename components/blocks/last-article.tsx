@@ -19,7 +19,7 @@ const LastArticle = ({ article, showTitle = true } : any) => {
 	if (showTitle) {
 		return (
 			<div className='fade-in-left-alternate border border-black/20 bg-[#f3f3f3] rounded-3xl p-5 relative mt-6'>
-				<h2 className='heading-md absolute -top-5 left-4 bg-[#f3f3f3] px-3 py-1 border border-black/20 rounded-2xl flex items-center gap-2'>
+				<h2 className='heading-md absolute -top-5 left-4 bg-[#f3f3f3] px-4 py-1 border border-black/20 rounded-3xl flex items-center gap-2'>
 				Ultimo Articolo
 			</h2>
 			<article className='mt-6'>

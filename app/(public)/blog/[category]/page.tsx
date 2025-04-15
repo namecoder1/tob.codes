@@ -3,8 +3,41 @@ import { Button } from '@/components/ui/button'
 import { client } from '@/sanity/lib/client'
 import { ARTICLES_CATEGORY_QUERY } from '@/sanity/lib/queries'
 import { Undo } from 'lucide-react'
+import { Metadata } from 'next'
 import Link from 'next/link'
 import React from 'react'
+
+export async function generateMetadata({ params }: { params: { category: string } }): Promise<Metadata> {
+	const category = await client.fetch(ARTICLES_CATEGORY_QUERY, { category: params.category })
+	
+	if (!category) {
+		return {
+			title: 'Categoria non trovata',
+			description: 'La categoria richiesta non è stata trovata'
+		}
+	}
+
+	const description = category[0]?.category?.description || 'Nessuna descrizione disponibile'
+	const title = category[0]?.category?.title || 'Categoria non trovata'
+
+	return {
+		title: `${title} | tob.codes`,
+		description,
+		openGraph: {
+			title: `${title} | tob.codes`,
+			description,
+			type: 'article',
+			authors: ['Tobia Bartolomei'],
+			images: category[0]?.category?.mainImage || undefined
+		},
+		twitter: {
+			card: 'summary_large_image',
+			title: `${title} | tob.codes`,
+			description,
+			images: category[0]?.category?.mainImage || undefined
+		}
+	}
+}
 
 const CategoryPage = async ({ params } : { params: Promise<{category: string}>}) => {
 	const category = (await params).category

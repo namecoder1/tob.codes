@@ -11,6 +11,27 @@ import p_certificate from '@/assets/cs50p-cert.png'
 import { BookOpenText, FolderGit2, GraduationCap, LibraryBig } from 'lucide-react'
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Home | tob.codes',
+  description: 'Sviluppatore web appassionato di tecnologia e innovazione. Portfolio, progetti e articoli su web development, React, Next.js e molto altro.',
+  openGraph: {
+    title: 'Home | tob.codes',
+    description: 'Sviluppatore web appassionato di tecnologia e innovazione. Portfolio, progetti e articoli su web development, React, Next.js e molto altro.',
+    images: [
+      { url: 'https://tob.codes/og-image.png' }
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Home | tob.codes',
+    description: 'Sviluppatore web appassionato di tecnologia e innovazione. Portfolio, progetti e articoli su web development, React, Next.js e molto altro.',
+    images: [
+      { url: 'https://tob.codes/og-image.png' }
+    ]
+  }
+}
 
 export default async function Home() {
   const article = await client.fetch(LAST_ARTICLE_QUERY)
@@ -55,7 +76,7 @@ export default async function Home() {
           </div>
           Education
         </h2>
-        <div className="relative w-full h-full py-4 bg-white rounded-2xl shadow-md flex flex-col items-center">
+        <div className="relative w-full h-full py-4 bg-white rounded-3xl shadow-md flex flex-col items-center">
           <div className="certificate-container relative w-full">
             <CertificateSwapper 
               xCertificate={x_certificate} 

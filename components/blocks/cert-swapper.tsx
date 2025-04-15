@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { StaticImageData } from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface CertificateSwapperProps {
   xCertificate: StaticImageData;
@@ -12,15 +13,26 @@ interface CertificateSwapperProps {
 
 function CertificateSwapper({ xCertificate, pCertificate }: CertificateSwapperProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   const certificates = [
-    { id: "x", image: xCertificate, alt: "Certificate CS50X" },
-    { id: "p", image: pCertificate, alt: "Certificate CS50P" }
+    { id: "x", image: xCertificate, alt: "Certificate CS50X", title: "CS50's Introduction to Computer Science" },
+    { id: "p", image: pCertificate, alt: "Certificate CS50P", title: "CS50's Introduction to Programming with Python" }
   ];
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setActiveIndex((prev) => (prev === certificates.length - 1 ? 0 : prev + 1));
-  };
+  }, [certificates.length]);
+
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+    
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 5000);
+    
+    return () => clearInterval(interval);
+  }, [activeIndex, isAutoPlaying, nextSlide]);
 
   const prevSlide = () => {
     setActiveIndex((prev) => (prev === 0 ? certificates.length - 1 : prev - 1));
@@ -28,60 +40,83 @@ function CertificateSwapper({ xCertificate, pCertificate }: CertificateSwapperPr
 
   const goToSlide = (index: number) => {
     setActiveIndex(index);
+    setIsAutoPlaying(false);
   };
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full max-w-4xl mx-auto">
+      {/* Certificate title */}
+      <div className="text-center mb-6">
+        <h3 className="text-xl font-semibold text-gray-800 mx-4">
+          {certificates[activeIndex].title}
+        </h3>
+      </div>
+      
       {/* Slider container */}
-      <div className="relative overflow-hidden rounded-lg">
-        <div 
-          className="flex transition-transform duration-500 ease-out"
-          style={{ transform: `translateX(-${activeIndex * 100}%)` }}
-        >
-          {certificates.map((cert) => (
-            <div key={cert.id} className="w-full flex-shrink-0 flex justify-center">
+      <div className="relative overflow-hidden">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="flex justify-center"
+          >
+            <div className="relative rounded-lg overflow-hidden border border-gray-200 shadow-lg">
               <Image
-                src={cert.image}
-                alt={cert.alt}
-                className="max-w-full md:max-w-[70%] lg:max-w-[650px] h-auto object-contain"
+                src={certificates[activeIndex].image}
+                alt={certificates[activeIndex].alt}
+                className="w-full h-auto"
                 width={800}
                 height={600}
                 priority
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent pointer-events-none"></div>
             </div>
-          ))}
-        </div>
+          </motion.div>
+        </AnimatePresence>
 
-        {/* Navigation arrows */}
-        <button 
-          onClick={prevSlide}
-          className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-md hover:bg-white transition-colors"
-          aria-label="Previous slide"
-        >
-          <ChevronLeft size={20} />
-        </button>
-        <button 
-          onClick={nextSlide}
-          className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-md hover:bg-white transition-colors"
-          aria-label="Next slide"
-        >
-          <ChevronRight size={20} />
-        </button>
+        {/* Navigation controls */}
+        <div className="hidden md:flex absolute inset-x-0 top-1/2 -translate-y-1/2 justify-between px-4 z-10">
+          <button 
+            onClick={() => {
+              prevSlide();
+              setIsAutoPlaying(false);
+            }}
+            className="bg-white/80 backdrop-blur-sm p-2 rounded-full shadow hover:bg-white transition-all duration-200"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <button 
+            onClick={() => {
+              nextSlide();
+              setIsAutoPlaying(false);
+            }}
+            className="bg-white/80 backdrop-blur-sm p-2 rounded-full shadow hover:bg-white transition-all duration-200"
+            aria-label="Next slide"
+          >
+            <ChevronRight size={20} />
+          </button>
+        </div>
       </div>
 
-      {/* Dots indicator */}
-      <div className="flex justify-center mt-4 gap-2">
-        {certificates.map((_, index) => (
+      {/* Certificate selector */}
+      <div className="flex justify-center mt-6 space-x-4">
+        {certificates.map((cert, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all ${
+            className={`px-4 py-2 rounded-md transition-all duration-200 ${
               activeIndex === index 
-                ? "bg-blue-500 w-6" 
-                : "bg-gray-300 hover:bg-gray-400"
+                ? "bg-blue-600 text-white shadow-md" 
+                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
             }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
+            aria-label={`View ${cert.title}`}
+          >
+            CS50{cert.id.toUpperCase()}
+          </button>
         ))}
       </div>
     </div>

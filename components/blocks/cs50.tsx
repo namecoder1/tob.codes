@@ -6,7 +6,7 @@ import { Dot } from 'lucide-react'
 
 const CS50 = () => {
 	return (
-		<div className="flex items-center backdrop-blur-sm bottom-3 right-3 border border-black/20 px-3 py-2 rounded-2xl w-fit my-2 gap-2">
+		<div className="bg-black text-white flex items-center backdrop-blur-sm bottom-3 right-3 border border-black/20 px-4 py-2.5 rounded-3xl w-fit my-2 gap-2">
 			<Image 
 				src={cs50} 
 				alt='Harvard School' 

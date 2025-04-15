@@ -17,6 +17,19 @@ import {
 } from "@/components/ui/alert-dialog"
 import Pin from '@/components/ui/pin'
 import { Separator } from '@/components/ui/separator'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+	title: 'Gallery | tob.codes',
+	description: 'Galleria di immagini di Tobia Bartolomei',
+	openGraph: {
+		title: 'Gallery | tob.codes',
+		description: 'Galleria di immagini di Tobia Bartolomei',
+		images: [
+			{ url: 'https://tob.codes/og-image.png' }
+		]
+	}
+}
 
 
 const GalleryPage = async () => {

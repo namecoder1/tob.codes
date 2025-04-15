@@ -8,8 +8,21 @@ import { LibraryBig } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
 import Pin from '@/components/ui/pin'
 import { ARTICLES_QUERYResult } from '@/sanity/types'
+import { Metadata } from 'next'
 
 const POSTS_PER_PAGE = 4
+
+export const metadata: Metadata = {
+	title: 'Blog | tob.codes',
+	description: 'Articoli, tutorial e guide per sviluppatori web',
+	openGraph: {
+		title: 'Blog | tob.codes',
+		description: 'Articoli, tutorial e guide per sviluppatori web',
+		images: [
+			{ url: 'https://tob.codes/og-image.png' }
+		]
+	}
+}
 
 const BlogPage = async ({ searchParams }: { searchParams: { page?: string } }) => {
 	const currentPage = Number(searchParams.page) || 1

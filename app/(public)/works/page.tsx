@@ -6,6 +6,19 @@ import React from 'react'
 import { FolderGit2 } from 'lucide-react'
 import LastWork from '@/components/blocks/last-work'
 import { Separator } from '@/components/ui/separator'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+	title: 'Progetti | tob.codes',
+	description: 'Progetti per clienti e personali realizzati da Tobia Bartolomei',
+	openGraph: {
+		title: 'Progetti | tob.codes',
+		description: 'Progetti per clienti e personali realizzati da Tobia Bartolomei',
+		images: [
+			{ url: 'https://tob.codes/og-image.png' }
+		]
+	}
+}
 
 const WorkPage = async () => {
   const works = await client.fetch(WORKS_QUERY)

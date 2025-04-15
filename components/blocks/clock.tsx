@@ -13,13 +13,13 @@ const Clock = () => {
 
   if (!time) {
     // Render statico iniziale
-    return <div className="fade-in-right-alternate py-1 px-3 border w-[83px] text-center flex items-center justify-center rounded-2xl shadow-xl bg-white/70 backdrop-blur-md h-10">
+    return <div className="fade-in-right-alternate py-1 px-3 border w-[83px] text-center flex items-center justify-center rounded-3xl shadow-xl bg-white/70 backdrop-blur-md h-10">
              <p>--:--:--</p> 
             </div>;
   }
   // Render auto-aggiornato
   return (
-    <div className="fade-in-right-alternate flex items-center justify-center py-1 px-3 border w-[83px] rounded-2xl shadow-xl bg-white/70 backdrop-blur-md h-10">
+    <div className="fade-in-right-alternate flex items-center justify-center py-1 px-3 border w-[83px] rounded-3xl shadow-xl bg-white/70 backdrop-blur-md h-10">
       <p>{time}</p>
     </div>
   );
