@@ -36,6 +36,7 @@ export const ARTICLE_QUERY = defineQuery(`
 		'slug': slug.current,
 		excerpt,
 		'category': category -> {title, 'slug': slug.current},
+		'mainImage': mainImage.asset -> url,
 		'body': body[],
 		pubDate
 	}	

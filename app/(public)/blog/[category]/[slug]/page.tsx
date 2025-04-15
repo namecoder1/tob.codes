@@ -4,6 +4,7 @@ import { formatDate } from '@/lib/utils'
 import { client } from '@/sanity/lib/client'
 import { ARTICLE_QUERY } from '@/sanity/lib/queries'
 import Link from 'next/link'
+import { Metadata } from 'next'
 
 import tobi from '@/assets/tobi.png'
 
@@ -11,6 +12,48 @@ import { Undo } from 'lucide-react'
 import Image from 'next/image'
 import { Separator } from '@/components/ui/separator'
 import Pin from '@/components/ui/pin'
+
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+	const article = await client.fetch(ARTICLE_QUERY, { slug: params.slug })
+	
+	if (!article) {
+		return {
+			title: 'Articolo non trovato',
+			description: 'L\'articolo richiesto non è stato trovato'
+		}
+	}
+
+	const description = article.excerpt || 
+		(article.body?.[0]?.children?.[0]?.text) || 
+		'Articolo di Tobia Bartolomei'
+
+	return {
+		title: `${article.title} | tob.codes`,
+		description,
+		openGraph: {
+			title: `${article.title} | tob.codes`,
+			description,
+			type: 'article',
+			publishedTime: article.pubDate,
+			authors: ['Tobia Bartolomei'],
+			images: article.mainImage ? [
+				{
+					url: article.mainImage.url,
+					width: article.mainImage.width,
+					height: article.mainImage.height,
+					alt: article.mainImage.alt || article.title
+				}
+			] : []
+		},
+		twitter: {
+			card: 'summary_large_image',
+			title: `${article.title} | tob.codes`,
+			description,
+			images: article.mainImage ? [article.mainImage.url] : []
+		}
+	}
+}
 
 const ArticlePage = async ({ params } : { params: Promise<{slug: string}>}) => {
 	const slug = (await params).slug
