@@ -1,19 +1,29 @@
 import { client } from '@/sanity/lib/client'
-import { ARTICLES_QUERY, LAST_ARTICLE_QUERY, CATEGORIES_QUERY } from '@/sanity/lib/queries'
+import { ARTICLES_QUERY, LAST_ARTICLE_QUERY, CATEGORIES_QUERY, ARTICLES_COUNT_QUERY } from '@/sanity/lib/queries'
 import Article from '@/components/blocks/article'
 import React from 'react'
 import LastArticle from '@/components/blocks/last-article'
-
+import { Pagination } from '@/components/ui/pagination'
 import { LibraryBig } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
 import Pin from '@/components/ui/pin'
+import { ARTICLES_QUERYResult } from '@/sanity/types'
 
+const POSTS_PER_PAGE = 4
 
+const BlogPage = async ({ searchParams }: { searchParams: { page?: string } }) => {
+	const currentPage = Number(searchParams.page) || 1
+	const start = (currentPage - 1) * POSTS_PER_PAGE
+	const end = start + POSTS_PER_PAGE
 
-const BlogPage = async () => {
-	const articles = await client.fetch(ARTICLES_QUERY)
-	const lastArticle = await client.fetch(LAST_ARTICLE_QUERY)
-	const categories = await client.fetch(CATEGORIES_QUERY)
+	const [articles, lastArticle, categories, totalPosts] = await Promise.all([
+		client.fetch(ARTICLES_QUERY, { start, end }),
+		client.fetch(LAST_ARTICLE_QUERY),
+		client.fetch(CATEGORIES_QUERY),
+		client.fetch(ARTICLES_COUNT_QUERY)
+	])
+
+	const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE)
 
 	return (
 		<div className='fade-in-alternate'>
@@ -42,13 +52,18 @@ const BlogPage = async () => {
 			<Separator className='my-10 md:my-16 bg-black/20' />
 			<h2 className='heading-md mb-4 fade-in-alternate'>Tutti gli articoli</h2>
 			<div className='flex flex-col gap-5 gap-y-8 w-full md:grid md:grid-cols-2'>
-				{articles.map((article) => {
+				{articles.map((article: ARTICLES_QUERYResult[number]) => {
 					return (
 						<Article article={article} key={article.id}/>
 					)
 				})}
 			</div>
 
+			<Pagination 
+				currentPage={currentPage} 
+				totalPages={totalPages} 
+				baseUrl="/blog"
+			/>
 		</div>
 	)
 }

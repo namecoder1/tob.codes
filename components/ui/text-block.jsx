@@ -1,8 +1,9 @@
+'use client'
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import {PortableText} from '@portabletext/react';
-import { Dot } from "lucide-react";
 import Link from "next/link";
+import CodeBlock from "./code-block";
 
 const imageComponent = (props) => 
   props.value? (
@@ -20,9 +21,6 @@ const imageComponent = (props) =>
     />
   ) : null;
 
-
-
-
 const components = {
   block: {
     normal: ({children}) => <p className="mb-3 leading-7">{children}</p>,
@@ -31,13 +29,14 @@ const components = {
     h3: ({children}) => <h3 className="text-lg font-semibold mt-8 mb-1">{children}</h3>,
   },
   list: {
-    bullet: ({children}) => <ul className="mt-xl flex flex-col items-start justify-start">{children}</ul>
+    bullet: ({children}) => <ul className="my-2 flex flex-col items-start justify-start">{children}</ul>
   },
   listItem: {
-    bullet: ({children}) => <li className="my-5 flex items-start gap-2"><Dot className="mt-1.5 flex-shrink-0" size={14} /><div>{children}</div></li>
+    bullet: ({children}) => <li className="my-3 flex items-start gap-2">•<span>{children}</span></li>
   },
   types: {
-    image: imageComponent
+    image: imageComponent,
+    codeBlock: CodeBlock
   },
   marks: {
     link: ({value, children}) => {

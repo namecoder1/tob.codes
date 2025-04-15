@@ -797,6 +797,124 @@
                 }
               }
             }
+          },
+          {
+            "type": "object",
+            "attributes": {
+              "language": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "union",
+                  "of": [
+                    {
+                      "type": "string",
+                      "value": "javascript"
+                    },
+                    {
+                      "type": "string",
+                      "value": "typescript"
+                    },
+                    {
+                      "type": "string",
+                      "value": "html"
+                    },
+                    {
+                      "type": "string",
+                      "value": "css"
+                    },
+                    {
+                      "type": "string",
+                      "value": "python"
+                    },
+                    {
+                      "type": "string",
+                      "value": "java"
+                    },
+                    {
+                      "type": "string",
+                      "value": "cpp"
+                    },
+                    {
+                      "type": "string",
+                      "value": "csharp"
+                    },
+                    {
+                      "type": "string",
+                      "value": "php"
+                    },
+                    {
+                      "type": "string",
+                      "value": "ruby"
+                    },
+                    {
+                      "type": "string",
+                      "value": "go"
+                    },
+                    {
+                      "type": "string",
+                      "value": "rust"
+                    },
+                    {
+                      "type": "string",
+                      "value": "sql"
+                    },
+                    {
+                      "type": "string",
+                      "value": "shell"
+                    },
+                    {
+                      "type": "string",
+                      "value": "json"
+                    },
+                    {
+                      "type": "string",
+                      "value": "yaml"
+                    },
+                    {
+                      "type": "string",
+                      "value": "markdown"
+                    },
+                    {
+                      "type": "string",
+                      "value": "text"
+                    }
+                  ]
+                },
+                "optional": true
+              },
+              "code": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": true
+              },
+              "filename": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": true
+              },
+              "_type": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string",
+                  "value": "codeBlock"
+                }
+              }
+            },
+            "rest": {
+              "type": "object",
+              "attributes": {
+                "_key": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
           }
         ]
       }

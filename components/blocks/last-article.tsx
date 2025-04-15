@@ -29,8 +29,15 @@ const LastArticle = ({ article, showTitle = true } : any) => {
 						<p className='flex items-center justify-start gap-1.5 border rounded-xl border-black/20 px-3 py-1 my-2 w-fit '>{formatDate(pubDate)}</p>
 						<p className='line-clamp-3 lg:max-w-lg pt-2 md:pt-0'>{excerpt}</p>
 					</div>
-					<div className="relative w-full -z-0">
-						<Image priority src={image} alt={imageAlt} width={500} height={400} className='w-full shadow-md rounded-xl border border-gray-300' />			
+					<div className="relative w-full aspect-[16/9]">
+						<Image 
+							priority 
+							src={image} 
+							alt={imageAlt} 
+							fill
+							sizes="(max-width: 768px) 100vw, 50vw"
+							className='object-cover shadow-md rounded-xl border border-gray-300' 
+						/>			
 						<Pin className="absolute top-3 right-3" title={category.title}/>
 					</div>
 				</Link>
@@ -47,8 +54,15 @@ const LastArticle = ({ article, showTitle = true } : any) => {
 					<p className='flex items-center justify-start gap-1.5 border rounded-xl border-black/20 px-3 py-1 my-2 w-fit '>{formatDate(pubDate)}</p>
 					<p className='line-clamp-3 lg:max-w-lg pt-2 md:pt-0'>{excerpt}</p>
 				</div>
-				<div className="relative w-full -z-0">
-					<Image priority src={image} alt={imageAlt} width={500} height={400} className='w-full shadow-md rounded-xl border border-gray-300' />			
+				<div className="relative w-full aspect-[16/9]">
+					<Image 
+						priority 
+						src={image} 
+						alt={imageAlt} 
+						fill
+						sizes="(max-width: 768px) 100vw, 50vw"
+						className='object-cover shadow-md rounded-xl border border-gray-300' 
+					/>			
 					<Pin className="absolute top-3 right-3" title={category.title}/>
 				</div>
 			</Link>

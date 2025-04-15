@@ -140,6 +140,12 @@ export type BlockContent = Array<{
   alt?: string;
   _type: "image";
   _key: string;
+} | {
+  language?: "javascript" | "typescript" | "html" | "css" | "python" | "java" | "cpp" | "csharp" | "php" | "ruby" | "go" | "rust" | "sql" | "shell" | "json" | "yaml" | "markdown" | "text";
+  code?: string;
+  filename?: string;
+  _type: "codeBlock";
+  _key: string;
 }>;
 
 export type Work = {
@@ -309,7 +315,7 @@ export type LAST_ARTICLE_QUERYResult = {
   pubDate: string | null;
 } | null;
 // Variable: ARTICLES_QUERY
-// Query: *[_type == 'post'] | order(_createdAt desc) {		'id': _id,		title,		'slug': slug.current,		excerpt,		'image': mainImage.asset -> url,		'imageAlt': mainImage.alt,		'category': category -> {title, 'slug': slug.current},		pubDate	}
+// Query: *[_type == 'post'] | order(_createdAt desc) [$start...$end] {		'id': _id,		title,		'slug': slug.current,		excerpt,		'image': mainImage.asset -> url,		'imageAlt': mainImage.alt,		'category': category -> {title, 'slug': slug.current},		pubDate	}
 export type ARTICLES_QUERYResult = Array<{
   id: string;
   title: string | null;
@@ -323,6 +329,9 @@ export type ARTICLES_QUERYResult = Array<{
   } | null;
   pubDate: string | null;
 }>;
+// Variable: ARTICLES_COUNT_QUERY
+// Query: count(*[_type == 'post'])
+export type ARTICLES_COUNT_QUERYResult = number;
 // Variable: ARTICLE_QUERY
 // Query: *[_type == 'post' && slug.current == $slug][0] {		title,		'slug': slug.current,		excerpt,		'category': category -> {title, 'slug': slug.current},		'body': body[],		pubDate	}
 export type ARTICLE_QUERYResult = {
@@ -351,6 +360,12 @@ export type ARTICLE_QUERYResult = {
     _type: "block";
     _key: string;
   } | {
+    language?: "cpp" | "csharp" | "css" | "go" | "html" | "java" | "javascript" | "json" | "markdown" | "php" | "python" | "ruby" | "rust" | "shell" | "sql" | "text" | "typescript" | "yaml";
+    code?: string;
+    filename?: string;
+    _type: "codeBlock";
+    _key: string;
+  } | {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -373,7 +388,7 @@ export type CATEGORIES_QUERYResult = Array<{
   slug: string | null;
 }>;
 // Variable: ARTICLES_CATEGORY_QUERY
-// Query: *[_type == 'post' && category->slug.current == $category] {		'id': _id,		title,		'slug': slug.current,		excerpt,		'image': mainImage.asset -> url,		'imageAlt': mainImage.alt,		category->{'slug': slug.current, 'title': title, 'description': description},		'totalArticles': count(*[_type == 'post' && category->slug.current == 'sanity'])	}
+// Query: *[_type == 'post' && category->slug.current == $category] {		'id': _id,		title,		'slug': slug.current,		excerpt,		'image': mainImage.asset -> url,		'imageAlt': mainImage.alt,		category->{'slug': slug.current, 'title': title, 'description': description, 'mainImage': mainImage.asset->url},		'totalArticles': count(*[_type == 'post' && category->slug.current == $category])	}
 export type ARTICLES_CATEGORY_QUERYResult = Array<{
   id: string;
   title: string | null;
@@ -385,6 +400,7 @@ export type ARTICLES_CATEGORY_QUERYResult = Array<{
     slug: string | null;
     title: string | null;
     description: string | null;
+    mainImage: string | null;
   } | null;
   totalArticles: number;
 }>;
@@ -462,10 +478,11 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "\n\t*[_type == 'post'] | order(_createdAt desc) [0] {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\texcerpt,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t\t'category': category -> {title, 'slug': slug.current},\n\t\tpubDate\n\t}\t\n": LAST_ARTICLE_QUERYResult;
-    "\n\t*[_type == 'post'] | order(_createdAt desc) {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\texcerpt,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t\t'category': category -> {title, 'slug': slug.current},\n\t\tpubDate\n\t}\t\n": ARTICLES_QUERYResult;
+    "\n\t*[_type == 'post'] | order(_createdAt desc) [$start...$end] {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\texcerpt,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t\t'category': category -> {title, 'slug': slug.current},\n\t\tpubDate\n\t}\t\n": ARTICLES_QUERYResult;
+    "\n\tcount(*[_type == 'post'])\n": ARTICLES_COUNT_QUERYResult;
     "\n\t*[_type == 'post' && slug.current == $slug][0] {\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\texcerpt,\n\t\t'category': category -> {title, 'slug': slug.current},\n\t\t'body': body[],\n\t\tpubDate\n\t}\t\n": ARTICLE_QUERYResult;
     "\n\t*[_type == 'category'] | order(_createdAt desc) {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current\n\t}\t\n": CATEGORIES_QUERYResult;
-    "\n\t*[_type == 'post' && category->slug.current == $category] {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\texcerpt,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t\tcategory->{'slug': slug.current, 'title': title, 'description': description},\n\t\t'totalArticles': count(*[_type == 'post' && category->slug.current == 'sanity'])\n\t}\n": ARTICLES_CATEGORY_QUERYResult;
+    "\n\t*[_type == 'post' && category->slug.current == $category] {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\texcerpt,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t\tcategory->{'slug': slug.current, 'title': title, 'description': description, 'mainImage': mainImage.asset->url},\n\t\t'totalArticles': count(*[_type == 'post' && category->slug.current == $category])\n\t}\n": ARTICLES_CATEGORY_QUERYResult;
     "\n\t*[_type == 'work'] | order(_createdAt desc) [0] {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\tcategory,\n\t\tpubDate,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t\texcerpt,\n\t\tbody\n\t}\t\n": LAST_WORK_QUERYResult;
     "\n\t*[_type == 'work' ] | order(_createdAt desc) {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\tcategory,\n\t\tpubDate,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t\texcerpt,\n\t\tbody\n\t}\t\n": WORKS_QUERYResult;
     "\n\t*[_type == 'work' && slug.current == $slug ] [0] {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\tcategory,\n\t\tpubDate,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t\t'projId': wakaLinks.projectId,\n  \t'projImg': wakaLinks.projectImage,\n\t\texcerpt,\n\t\tbody,\n\t\tlink\n\t}\t\n": WORK_QUERYResult;

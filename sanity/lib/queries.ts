@@ -14,7 +14,7 @@ export const LAST_ARTICLE_QUERY = defineQuery(`
 `)
 
 export const ARTICLES_QUERY = defineQuery(`
-	*[_type == 'post'] | order(_createdAt desc) {
+	*[_type == 'post'] | order(_createdAt desc) [$start...$end] {
 		'id': _id,
 		title,
 		'slug': slug.current,
@@ -24,6 +24,10 @@ export const ARTICLES_QUERY = defineQuery(`
 		'category': category -> {title, 'slug': slug.current},
 		pubDate
 	}	
+`)
+
+export const ARTICLES_COUNT_QUERY = defineQuery(`
+	count(*[_type == 'post'])
 `)
 
 export const ARTICLE_QUERY = defineQuery(`
@@ -51,8 +55,8 @@ export const ARTICLES_CATEGORY_QUERY = defineQuery(`
 		excerpt,
 		'image': mainImage.asset -> url,
 		'imageAlt': mainImage.alt,
-		category->{'slug': slug.current, 'title': title, 'description': description},
-		'totalArticles': count(*[_type == 'post' && category->slug.current == 'sanity'])
+		category->{'slug': slug.current, 'title': title, 'description': description, 'mainImage': mainImage.asset->url},
+		'totalArticles': count(*[_type == 'post' && category->slug.current == $category])
 	}
 `)
 

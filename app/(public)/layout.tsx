@@ -2,9 +2,8 @@ import Footer from "@/components/blocks/footer";
 import MainContainer from "@/components/blocks/main-container";
 import MenuBar from "@/components/blocks/menubar";
 import Navbar from "@/components/blocks/navbar";
-
+import Script from 'next/script';
 import { Analytics } from '@vercel/analytics/next';
-
 
 import { Poppins } from 'next/font/google'
 const poppins = Poppins({
@@ -29,7 +28,8 @@ async function FrontendLayout ({
 				</MainContainer>
 			<Footer />
 			</section>
-			<Analytics /> 		
+			<Analytics /> 	
+			<Script src="//embeds.iubenda.com/widgets/bd3113c8-a101-47a5-b2a5-e3890580b8dc.js" strategy="lazyOnload" />
 		</main>
 	)
 }

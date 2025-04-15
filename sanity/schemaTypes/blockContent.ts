@@ -68,5 +68,52 @@ export const blockContentType = defineType({
         }
       ]
     }),
+    // Code block type
+    defineArrayMember({
+      type: 'object',
+      name: 'codeBlock',
+      title: 'Code Block',
+      fields: [
+        {
+          name: 'language',
+          title: 'Language',
+          type: 'string',
+          options: {
+            list: [
+              { title: 'JavaScript', value: 'javascript' },
+              { title: 'TypeScript', value: 'typescript' },
+              { title: 'HTML', value: 'html' },
+              { title: 'CSS', value: 'css' },
+              { title: 'Python', value: 'python' },
+              { title: 'Java', value: 'java' },
+              { title: 'C++', value: 'cpp' },
+              { title: 'C#', value: 'csharp' },
+              { title: 'PHP', value: 'php' },
+              { title: 'Ruby', value: 'ruby' },
+              { title: 'Go', value: 'go' },
+              { title: 'Rust', value: 'rust' },
+              { title: 'SQL', value: 'sql' },
+              { title: 'Shell', value: 'shell' },
+              { title: 'JSON', value: 'json' },
+              { title: 'YAML', value: 'yaml' },
+              { title: 'Markdown', value: 'markdown' },
+              { title: 'Plain Text', value: 'text' },
+            ],
+          },
+        },
+        {
+          name: 'code',
+          title: 'Code',
+          type: 'text',
+          rows: 10,
+        },
+        {
+          name: 'filename',
+          title: 'Filename (optional)',
+          type: 'string',
+          description: 'Optional filename to display above the code block',
+        },
+      ],
+    }),
   ],
 })
