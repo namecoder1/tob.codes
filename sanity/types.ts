@@ -333,15 +333,17 @@ export type ARTICLES_QUERYResult = Array<{
 // Query: count(*[_type == 'post'])
 export type ARTICLES_COUNT_QUERYResult = number;
 // Variable: ARTICLE_QUERY
-// Query: *[_type == 'post' && slug.current == $slug][0] {		title,		'slug': slug.current,		excerpt,		'category': category -> {title, 'slug': slug.current},		'body': body[],		pubDate	}
+// Query: *[_type == 'post' && slug.current == $slug][0] {		title,		'slug': slug.current,		excerpt,		'publishedTime': pubDate,		'category': category -> {title, 'slug': slug.current},		'mainImage': mainImage.asset -> url,		'body': body[],		pubDate	}
 export type ARTICLE_QUERYResult = {
   title: string | null;
   slug: string | null;
   excerpt: string | null;
+  publishedTime: string | null;
   category: {
     title: string | null;
     slug: string | null;
   } | null;
+  mainImage: string | null;
   body: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -480,7 +482,7 @@ declare module "@sanity/client" {
     "\n\t*[_type == 'post'] | order(_createdAt desc) [0] {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\texcerpt,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t\t'category': category -> {title, 'slug': slug.current},\n\t\tpubDate\n\t}\t\n": LAST_ARTICLE_QUERYResult;
     "\n\t*[_type == 'post'] | order(_createdAt desc) [$start...$end] {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\texcerpt,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t\t'category': category -> {title, 'slug': slug.current},\n\t\tpubDate\n\t}\t\n": ARTICLES_QUERYResult;
     "\n\tcount(*[_type == 'post'])\n": ARTICLES_COUNT_QUERYResult;
-    "\n\t*[_type == 'post' && slug.current == $slug][0] {\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\texcerpt,\n\t\t'category': category -> {title, 'slug': slug.current},\n\t\t'body': body[],\n\t\tpubDate\n\t}\t\n": ARTICLE_QUERYResult;
+    "\n\t*[_type == 'post' && slug.current == $slug][0] {\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\texcerpt,\n\t\t'publishedTime': pubDate,\n\t\t'category': category -> {title, 'slug': slug.current},\n\t\t'mainImage': mainImage.asset -> url,\n\t\t'body': body[],\n\t\tpubDate\n\t}\t\n": ARTICLE_QUERYResult;
     "\n\t*[_type == 'category'] | order(_createdAt desc) {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current\n\t}\t\n": CATEGORIES_QUERYResult;
     "\n\t*[_type == 'post' && category->slug.current == $category] {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\texcerpt,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t\tcategory->{'slug': slug.current, 'title': title, 'description': description, 'mainImage': mainImage.asset->url},\n\t\t'totalArticles': count(*[_type == 'post' && category->slug.current == $category])\n\t}\n": ARTICLES_CATEGORY_QUERYResult;
     "\n\t*[_type == 'work'] | order(_createdAt desc) [0] {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\tcategory,\n\t\tpubDate,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t\texcerpt,\n\t\tbody\n\t}\t\n": LAST_WORK_QUERYResult;

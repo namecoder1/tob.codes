@@ -13,9 +13,32 @@ import Image from 'next/image'
 import { Separator } from '@/components/ui/separator'
 import Pin from '@/components/ui/pin'
 
+type SanityImage = {
+	_type: 'image'
+	asset: {
+		_ref: string
+		_type: 'reference'
+	}
+	url?: string
+	width?: number
+	height?: number
+	alt?: string
+}
+
+type Article = {
+	title: string | null
+	excerpt: string | null
+	pubDate: string | null
+	mainImage: SanityImage | null
+	category?: {
+		title: string | null
+		slug: string | null
+	} | null
+	body: any[] | null
+}
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-	const article = await client.fetch(ARTICLE_QUERY, { slug: params.slug })
+	const article = await client.fetch<Article>(ARTICLE_QUERY, { slug: params.slug })
 	
 	if (!article) {
 		return {
@@ -24,33 +47,32 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 		}
 	}
 
-	const description = article.excerpt || 
-		(article.body?.[0]?.children?.[0]?.text) || 
-		'Articolo di Tobia Bartolomei'
+	const description = article.excerpt || 'Articolo di Tobia Bartolomei'
+	const title = article.title || 'Articolo non trovato'
 
 	return {
-		title: `${article.title} | tob.codes`,
+		title: `${title} | tob.codes`,
 		description,
 		openGraph: {
-			title: `${article.title} | tob.codes`,
+			title: `${title} | tob.codes`,
 			description,
 			type: 'article',
-			publishedTime: article.pubDate,
+			publishedTime: article.pubDate || undefined,
 			authors: ['Tobia Bartolomei'],
-			images: article.mainImage ? [
+			images: article.mainImage?.url ? [
 				{
 					url: article.mainImage.url,
-					width: article.mainImage.width,
-					height: article.mainImage.height,
-					alt: article.mainImage.alt || article.title
+					width: article.mainImage.width || 1200,
+					height: article.mainImage.height || 630,
+					alt: article.mainImage.alt || title
 				}
 			] : []
 		},
 		twitter: {
 			card: 'summary_large_image',
-			title: `${article.title} | tob.codes`,
+			title: `${title} | tob.codes`,
 			description,
-			images: article.mainImage ? [article.mainImage.url] : []
+			images: article.mainImage?.url ? [article.mainImage.url] : []
 		}
 	}
 }
