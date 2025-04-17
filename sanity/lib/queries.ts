@@ -107,6 +107,38 @@ export const WORK_QUERY = defineQuery(`
 	}	
 `)
 
+export const PERS_WORKS_QUERY = defineQuery(`
+	*[_type == 'persWork'] | order(_createdAt desc) {
+		'id': _id,
+		title,
+		'slug': slug.current,
+		pubDate,
+		'image': image.asset -> url,
+		'imageAlt': image.alt,
+		excerpt,
+		body,
+		github,
+		link,
+		category,
+	}
+`)
+
+export const PERS_WORK_QUERY = defineQuery(`
+	*[_type == 'persWork' && slug.current == $slug] [0] {
+		'id': _id,
+		title,
+		'slug': slug.current,
+		pubDate,
+		'image': image.asset -> url,
+		'imageAlt': image.alt,
+		excerpt,
+		body,
+		github,
+		link,
+		category
+	}
+`)
+
 export const PHOTOS_QUERY = defineQuery(`
 	*[_type == 'persImage'] | order(_createdAt desc) {
 		'id': _id,

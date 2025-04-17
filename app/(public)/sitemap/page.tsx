@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 import { client } from '@/sanity/lib/client'
-import { ARTICLES_QUERY, WORKS_QUERY, PHOTOS_QUERY, CATEGORIES_QUERY, ARTICLES_COUNT_QUERY } from '@/sanity/lib/queries'
+import { ARTICLES_QUERY, WORKS_QUERY, PHOTOS_QUERY, CATEGORIES_QUERY, ARTICLES_COUNT_QUERY, PERS_WORKS_QUERY } from '@/sanity/lib/queries'
 import { Metadata } from 'next'
 import { Separator } from '@/components/ui/separator'
 import { Map } from 'lucide-react'
@@ -16,12 +16,13 @@ export const revalidate = 60
 
 const SitemapPage = async () => {
 	// Fetch all dynamic content from Sanity
-	const [articles, works, photos, categories, totalArticles] = await Promise.all([
+	const [articles, works, photos, categories, totalArticles, persWorks] = await Promise.all([
 		client.fetch(ARTICLES_QUERY, { start: 0, end: 100 }), // Fetch up to 100 articles
 		client.fetch(WORKS_QUERY),
 		client.fetch(PHOTOS_QUERY),
 		client.fetch(CATEGORIES_QUERY),
-		client.fetch(ARTICLES_COUNT_QUERY)
+		client.fetch(ARTICLES_COUNT_QUERY),
+		client.fetch(PERS_WORKS_QUERY)
 	])
 
 	// Static pages
@@ -92,6 +93,16 @@ const SitemapPage = async () => {
 				<ul className='grid grid-cols-1 md:grid-cols-2 gap-2'>
 					{photos.map((photo) => (
 						<SitemapLink key={photo.id} title={photo.title || 'Foto senza titolo'} path={`/gallery#${photo.id}`} />
+					))}
+				</ul>
+			</div>
+
+			{/* Personal Works */}
+			<div className='mb-10'>
+				<h2 className='heading-md mb-4'>Progetti Personali</h2>
+				<ul className='grid grid-cols-1 md:grid-cols-2 gap-2'>
+					{persWorks.map((persWork) => (
+						<SitemapLink key={persWork.id} title={persWork.title || 'Progetto senza titolo'} path={`/works/personal/${persWork.slug}`} />
 					))}
 				</ul>
 			</div>

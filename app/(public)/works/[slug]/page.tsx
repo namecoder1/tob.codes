@@ -65,7 +65,7 @@ const WorkPage = async ({ params } : { params: Promise<{slug: string}>}) => {
 					<Pin title={work.category} />
 				</div>
 			</div>
-			<Separator className='my-8 bg-black/20' />
+			<Separator className='mb-8 mt-4 bg-black/20' />
 			<Image priority src={`${work.image}`} alt={`${work.imageAlt}`} width={300} height={200} className='w-full rounded-xl my-4 border shadow-sm' quality={100} />
 			<div className='max-w-4xl'>
 				<TextBlock value={work.body} />

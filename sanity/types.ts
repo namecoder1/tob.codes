@@ -68,6 +68,69 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type PersWork = {
+  _id: string;
+  _type: "persWork";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  pubDate?: string;
+  excerpt?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  category?: "Backend" | "Frontend" | "Full Stack";
+  link?: string;
+  github?: string;
+  body?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "blockquote";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  } | {
+    language?: "javascript" | "typescript" | "html" | "css" | "python" | "java" | "cpp" | "csharp" | "php" | "ruby" | "go" | "rust" | "sql" | "shell" | "json" | "yaml" | "markdown" | "text";
+    code?: string;
+    filename?: string;
+    _type: "codeBlock";
+    _key: string;
+  }>;
+};
+
 export type Skill = {
   _id: string;
   _type: "skill";
@@ -296,7 +359,7 @@ export type Slug = {
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Skill | PersImage | BlockContent | Work | Post | Category | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | PersWork | Skill | PersImage | BlockContent | Work | Post | Category | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: sanity/lib/queries.ts
 // Variable: LAST_ARTICLE_QUERY
@@ -448,6 +511,106 @@ export type WORK_QUERYResult = {
   body: BlockContent | null;
   link: string | null;
 } | null;
+// Variable: PERS_WORKS_QUERY
+// Query: *[_type == 'persWork'] | order(_createdAt desc) {		'id': _id,		title,		'slug': slug.current,		pubDate,		'image': image.asset -> url,		'imageAlt': image.alt,		excerpt,		body,		github,		link,		category,	}
+export type PERS_WORKS_QUERYResult = Array<{
+  id: string;
+  title: string | null;
+  slug: string | null;
+  pubDate: string | null;
+  image: string | null;
+  imageAlt: string | null;
+  excerpt: string | null;
+  body: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "normal";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    language?: "cpp" | "csharp" | "css" | "go" | "html" | "java" | "javascript" | "json" | "markdown" | "php" | "python" | "ruby" | "rust" | "shell" | "sql" | "text" | "typescript" | "yaml";
+    code?: string;
+    filename?: string;
+    _type: "codeBlock";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }> | null;
+  github: string | null;
+  link: string | null;
+  category: "Backend" | "Frontend" | "Full Stack" | null;
+}>;
+// Variable: PERS_WORK_QUERY
+// Query: *[_type == 'persWork' && slug.current == $slug] [0] {		'id': _id,		title,		'slug': slug.current,		pubDate,		'image': image.asset -> url,		'imageAlt': image.alt,		excerpt,		body,		github,		link,		category	}
+export type PERS_WORK_QUERYResult = {
+  id: string;
+  title: string | null;
+  slug: string | null;
+  pubDate: string | null;
+  image: string | null;
+  imageAlt: string | null;
+  excerpt: string | null;
+  body: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "normal";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    language?: "cpp" | "csharp" | "css" | "go" | "html" | "java" | "javascript" | "json" | "markdown" | "php" | "python" | "ruby" | "rust" | "shell" | "sql" | "text" | "typescript" | "yaml";
+    code?: string;
+    filename?: string;
+    _type: "codeBlock";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }> | null;
+  github: string | null;
+  link: string | null;
+  category: "Backend" | "Frontend" | "Full Stack" | null;
+} | null;
 // Variable: PHOTOS_QUERY
 // Query: *[_type == 'persImage'] | order(_createdAt desc) {		'id': _id,		title,		description,		'image': mainImage.asset -> url,		'imageAlt': mainImage.alt,	}
 export type PHOTOS_QUERYResult = Array<{
@@ -488,6 +651,8 @@ declare module "@sanity/client" {
     "\n\t*[_type == 'work'] | order(_createdAt desc) [0] {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\tcategory,\n\t\tpubDate,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t\texcerpt,\n\t\tbody\n\t}\t\n": LAST_WORK_QUERYResult;
     "\n\t*[_type == 'work' ] | order(_createdAt desc) {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\tcategory,\n\t\tpubDate,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t\texcerpt,\n\t\tbody\n\t}\t\n": WORKS_QUERYResult;
     "\n\t*[_type == 'work' && slug.current == $slug ] [0] {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\tcategory,\n\t\tpubDate,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t\t'projId': wakaLinks.projectId,\n  \t'projImg': wakaLinks.projectImage,\n\t\texcerpt,\n\t\tbody,\n\t\tlink\n\t}\t\n": WORK_QUERYResult;
+    "\n\t*[_type == 'persWork'] | order(_createdAt desc) {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\tpubDate,\n\t\t'image': image.asset -> url,\n\t\t'imageAlt': image.alt,\n\t\texcerpt,\n\t\tbody,\n\t\tgithub,\n\t\tlink,\n\t\tcategory,\n\t}\n": PERS_WORKS_QUERYResult;
+    "\n\t*[_type == 'persWork' && slug.current == $slug] [0] {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\tpubDate,\n\t\t'image': image.asset -> url,\n\t\t'imageAlt': image.alt,\n\t\texcerpt,\n\t\tbody,\n\t\tgithub,\n\t\tlink,\n\t\tcategory\n\t}\n": PERS_WORK_QUERYResult;
     "\n\t*[_type == 'persImage'] | order(_createdAt desc) {\n\t\t'id': _id,\n\t\ttitle,\n\t\tdescription,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t}\t\n": PHOTOS_QUERYResult;
     "\n\t*[_type == 'skill'] {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'image': image.asset -> url,\n\t\tprogress\n\t}\t\n": SKILLS_QUERYResult;
     "\n\t*[_type == 'work'] {\n\t\t'id': _id,\n\t\ttitle,\n\t\tpubDate,\n\t\tcategory,\n\t\tlink\n\t}\t\n": ABOUT_WORKS_QUERYResult;

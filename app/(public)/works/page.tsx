@@ -1,12 +1,13 @@
 import WorkCard from '@/components/blocks/work'
 import { client } from '@/sanity/lib/client'
-import { LAST_WORK_QUERY, WORKS_QUERY } from '@/sanity/lib/queries'
+import { LAST_WORK_QUERY, PERS_WORKS_QUERY, WORKS_QUERY } from '@/sanity/lib/queries'
 import React from 'react'
 
 import { FolderGit2 } from 'lucide-react'
 import LastWork from '@/components/blocks/last-work'
 import { Separator } from '@/components/ui/separator'
 import { Metadata } from 'next'
+import PersWorkCard from '@/components/blocks/pers-work'
 
 export const metadata: Metadata = {
 	title: 'Progetti | tob.codes',
@@ -26,6 +27,7 @@ export const revalidate = 60
 const WorkPage = async () => {
   const works = await client.fetch(WORKS_QUERY)
   const work = await client.fetch(LAST_WORK_QUERY)
+  const persWorks = await client.fetch(PERS_WORKS_QUERY)
 	return (
     <section className='fade-in-alternate'>
       <div className='flex flex-col gap-3 mb-6'>
@@ -44,10 +46,17 @@ const WorkPage = async () => {
         <LastWork work={work} />
       </div>
       <Separator className='my-10 md:my-16' />
-			<h2 className='heading-md mb-4'>Tutti i progetti</h2>
-      <div className='grid grid-cols-1 gap-y-10'>
+			<h2 className='heading-md mb-4'>Progetti Lavorativi</h2>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
         {works.map((work) => (
           <WorkCard work={work} key={work.id} />
+        ))}
+      </div>
+      <Separator className='my-10 md:my-16' />
+			<h2 className='heading-md mb-4'>Progetti Personali</h2>
+      <div className='grid grid-cols-1 gap-y-6'>
+        {persWorks.map((work) => (
+          <PersWorkCard persWork={work} key={work.id} />
         ))}
       </div>
     </section>
