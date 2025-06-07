@@ -6,6 +6,9 @@ export const structure: StructureResolver = (S) =>
     .title('tob.codes')
     .items([
       S.documentTypeListItem('work').title('Progetti'),
+      S.documentTypeListItem('app').title('Apps'),
+      S.documentTypeListItem('appPolicy').title('Policy Apps'),
+      S.documentTypeListItem('appSupport').title('Supporto Apps'),
       S.documentTypeListItem('persWork').title('Progetti Personali'),
       S.documentTypeListItem('skill').title('Skills'),
       S.documentTypeListItem('post').title('Blog'),

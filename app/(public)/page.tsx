@@ -1,6 +1,6 @@
 import { client } from "@/sanity/lib/client";
 import Hero from "@/components/blocks/hero";
-import { LAST_ARTICLE_QUERY, LAST_WORK_QUERY } from "@/sanity/lib/queries";
+import { LAST_APP_QUERY, LAST_ARTICLE_QUERY, LAST_WORK_QUERY } from "@/sanity/lib/queries";
 import LastArticle from "@/components/blocks/last-article";
 import LastWork from "@/components/blocks/last-work";
 import CertificateSwapper from "@/components/blocks/cert-swapper";
@@ -8,10 +8,11 @@ import CertificateSwapper from "@/components/blocks/cert-swapper";
 import x_certificate from '@/assets/cs50x-cert.png'
 import p_certificate from '@/assets/cs50p-cert.png'
 
-import { BookOpenText, FolderGit2, GraduationCap, LibraryBig } from 'lucide-react'
+import { BookOpenText, FolderGit2, GraduationCap, LayoutGrid, LibraryBig } from 'lucide-react'
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Metadata } from "next";
+import LastApp from "@/components/blocks/last-app";
 
 // Add revalidation to ensure content is fresh
 export const revalidate = 60
@@ -37,6 +38,7 @@ export const metadata: Metadata = {
 }
 
 export default async function Home() {
+  const lastApp = await client.fetch(LAST_APP_QUERY)
   const article = await client.fetch(LAST_ARTICLE_QUERY)
   const work = await client.fetch(LAST_WORK_QUERY)
   return (
@@ -69,6 +71,17 @@ export default async function Home() {
             Tutti gli articoli
           </Link>
         </Button>
+      </div>
+      <div className="my-32 flex flex-col gap-3">
+        <h2 className="heading-lg mb-4 flex items-center gap-2">
+          <div className="inline-block">
+            <div className="bg-[#abff77] border-2 border-blue-950/20 rounded-2xl flex p-[8px] w-fit">
+              <LayoutGrid className="inline-block" size={28} />
+            </div>
+          </div>
+          Ultima App
+        </h2>
+        <LastApp app={lastApp} />
       </div>
       <div className="my-32 flex flex-col gap-3">
         <h2 className="heading-lg mb-4 flex items-center gap-2">

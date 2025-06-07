@@ -1,6 +1,6 @@
 
 import Link from 'next/link'
-import { HomeIcon, FolderGit2, CircleUser, LibraryBig, Images } from 'lucide-react'
+import { HomeIcon, FolderGit2, CircleUser, LibraryBig, Images, LayoutGrid } from 'lucide-react'
 import Clock from './clock';
 
 type MenuLinkP = {
@@ -21,6 +21,7 @@ const Navbar = () => {
     <ul className="flex gap-1">
       <li><MenuLink slug="/about"><CircleUser size={20} /><span className="text-sm">About</span></MenuLink></li>
       <li><MenuLink slug="/works"><FolderGit2 size={20} /><span className="text-sm">Progetti</span></MenuLink></li>
+      <li><MenuLink slug="/apps"><LayoutGrid size={20} /><span className="text-sm">Apps</span></MenuLink></li>
       <li><MenuLink slug="/blog"><LibraryBig size={20} /><span className="text-sm">Blog</span></MenuLink></li>
       <li><MenuLink slug="/gallery"><Images size={20} /><span className="text-sm">Gallery</span></MenuLink></li>
     </ul>

@@ -5,7 +5,7 @@ const Pin = ({
 	slug,
 	title,
 	className
- } : { slug?: string, title: string | null, className?: string}) => {
+ } : { slug?: string, title: React.ReactNode | string | null, className?: string}) => {
 	if(!slug) {
 		return (
 			<div className={`${className} border border-black/30 px-2 py-1 rounded-xl w-fit text-white bg-black backdrop-blur-sm`}>

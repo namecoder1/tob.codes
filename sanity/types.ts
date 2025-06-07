@@ -68,6 +68,170 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type AppSupport = {
+  _id: string;
+  _type: "appSupport";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  app?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "app";
+  };
+  body?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "blockquote";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  } | {
+    language?: "javascript" | "typescript" | "html" | "css" | "python" | "java" | "cpp" | "csharp" | "php" | "ruby" | "go" | "rust" | "sql" | "shell" | "json" | "yaml" | "markdown" | "text";
+    code?: string;
+    filename?: string;
+    _type: "codeBlock";
+    _key: string;
+  }>;
+};
+
+export type AppPolicy = {
+  _id: string;
+  _type: "appPolicy";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  app?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "app";
+  };
+  body?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "blockquote";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  } | {
+    language?: "javascript" | "typescript" | "html" | "css" | "python" | "java" | "cpp" | "csharp" | "php" | "ruby" | "go" | "rust" | "sql" | "shell" | "json" | "yaml" | "markdown" | "text";
+    code?: string;
+    filename?: string;
+    _type: "codeBlock";
+    _key: string;
+  }>;
+};
+
+export type App = {
+  _id: string;
+  _type: "app";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  link?: string;
+  platform?: "iOS" | "Android";
+  tag?: Array<string>;
+  description?: string;
+  mainImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  text?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "blockquote";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  } | {
+    language?: "javascript" | "typescript" | "html" | "css" | "python" | "java" | "cpp" | "csharp" | "php" | "ruby" | "go" | "rust" | "sql" | "shell" | "json" | "yaml" | "markdown" | "text";
+    code?: string;
+    filename?: string;
+    _type: "codeBlock";
+    _key: string;
+  }>;
+};
+
 export type PersWork = {
   _id: string;
   _type: "persWork";
@@ -359,7 +523,7 @@ export type Slug = {
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | PersWork | Skill | PersImage | BlockContent | Work | Post | Category | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | AppSupport | AppPolicy | App | PersWork | Skill | PersImage | BlockContent | Work | Post | Category | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: sanity/lib/queries.ts
 // Variable: LAST_ARTICLE_QUERY
@@ -637,6 +801,173 @@ export type ABOUT_WORKS_QUERYResult = Array<{
   category: "Back-end" | "Front-end" | "Full-stack" | null;
   link: string | null;
 }>;
+// Variable: LAST_APP_QUERY
+// Query: *[_type == 'app'] | order(_createdAt desc) [0] {		'id': _id,		title,		'slug': slug.current,		link,		platform,		description,		'image': mainImage.asset -> url	}
+export type LAST_APP_QUERYResult = {
+  id: string;
+  title: string | null;
+  slug: string | null;
+  link: string | null;
+  platform: "Android" | "iOS" | null;
+  description: string | null;
+  image: string | null;
+} | null;
+// Variable: APPS_QUERY
+// Query: *[_type == 'app'] | order(_createdAt desc) {		'id': _id,		title,		'slug': slug.current,		link,		platform,		description,		'image': mainImage.asset -> url,		tag	}
+export type APPS_QUERYResult = Array<{
+  id: string;
+  title: string | null;
+  slug: string | null;
+  link: string | null;
+  platform: "Android" | "iOS" | null;
+  description: string | null;
+  image: string | null;
+  tag: Array<string> | null;
+}>;
+// Variable: APP_QUERY
+// Query: *[_type == 'app' && slug.current == $slug] [0] {		'id': _id,		title,		'slug': slug.current,		link,		platform,		description,		'image': mainImage.asset -> url,		tag,		text	}
+export type APP_QUERYResult = {
+  id: string;
+  title: string | null;
+  slug: string | null;
+  link: string | null;
+  platform: "Android" | "iOS" | null;
+  description: string | null;
+  image: string | null;
+  tag: Array<string> | null;
+  text: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "normal";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    language?: "cpp" | "csharp" | "css" | "go" | "html" | "java" | "javascript" | "json" | "markdown" | "php" | "python" | "ruby" | "rust" | "shell" | "sql" | "text" | "typescript" | "yaml";
+    code?: string;
+    filename?: string;
+    _type: "codeBlock";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }> | null;
+} | null;
+// Variable: APP_PRIVACY_QUERY
+// Query: *[_type == 'appPolicy' && app._ref == $id] [0] {		'id': _id,		title,		app,		body	}
+export type APP_PRIVACY_QUERYResult = {
+  id: string;
+  title: string | null;
+  app: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "app";
+  } | null;
+  body: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "normal";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    language?: "cpp" | "csharp" | "css" | "go" | "html" | "java" | "javascript" | "json" | "markdown" | "php" | "python" | "ruby" | "rust" | "shell" | "sql" | "text" | "typescript" | "yaml";
+    code?: string;
+    filename?: string;
+    _type: "codeBlock";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }> | null;
+} | null;
+// Variable: APP_SUPPORT_QUERY
+// Query: *[_type == 'appSupport' && app._ref == $id] [0] {		'id': _id,		title,		app,		body	}
+export type APP_SUPPORT_QUERYResult = {
+  id: string;
+  title: string | null;
+  app: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "app";
+  } | null;
+  body: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "normal";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    language?: "cpp" | "csharp" | "css" | "go" | "html" | "java" | "javascript" | "json" | "markdown" | "php" | "python" | "ruby" | "rust" | "shell" | "sql" | "text" | "typescript" | "yaml";
+    code?: string;
+    filename?: string;
+    _type: "codeBlock";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }> | null;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
@@ -656,5 +987,10 @@ declare module "@sanity/client" {
     "\n\t*[_type == 'persImage'] | order(_createdAt desc) {\n\t\t'id': _id,\n\t\ttitle,\n\t\tdescription,\n\t\t'image': mainImage.asset -> url,\n\t\t'imageAlt': mainImage.alt,\n\t}\t\n": PHOTOS_QUERYResult;
     "\n\t*[_type == 'skill'] {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'image': image.asset -> url,\n\t\tprogress\n\t}\t\n": SKILLS_QUERYResult;
     "\n\t*[_type == 'work'] {\n\t\t'id': _id,\n\t\ttitle,\n\t\tpubDate,\n\t\tcategory,\n\t\tlink\n\t}\t\n": ABOUT_WORKS_QUERYResult;
+    "\n\t*[_type == 'app'] | order(_createdAt desc) [0] {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\tlink,\n\t\tplatform,\n\t\tdescription,\n\t\t'image': mainImage.asset -> url\n\t}\n": LAST_APP_QUERYResult;
+    "\n\t*[_type == 'app'] | order(_createdAt desc) {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\tlink,\n\t\tplatform,\n\t\tdescription,\n\t\t'image': mainImage.asset -> url,\n\t\ttag\n\t}\n": APPS_QUERYResult;
+    "\n\t*[_type == 'app' && slug.current == $slug] [0] {\n\t\t'id': _id,\n\t\ttitle,\n\t\t'slug': slug.current,\n\t\tlink,\n\t\tplatform,\n\t\tdescription,\n\t\t'image': mainImage.asset -> url,\n\t\ttag,\n\t\ttext\n\t}\n": APP_QUERYResult;
+    "\n\t*[_type == 'appPolicy' && app._ref == $id] [0] {\n\t\t'id': _id,\n\t\ttitle,\n\t\tapp,\n\t\tbody\n\t}\n": APP_PRIVACY_QUERYResult;
+    "\n\t*[_type == 'appSupport' && app._ref == $id] [0] {\n\t\t'id': _id,\n\t\ttitle,\n\t\tapp,\n\t\tbody\n\t}\n": APP_SUPPORT_QUERYResult;
   }
 }

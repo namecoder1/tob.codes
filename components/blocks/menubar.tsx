@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { HomeIcon, FolderGit2, CircleUser, LibraryBig, Images } from 'lucide-react';
+import { HomeIcon, FolderGit2, CircleUser, LibraryBig, Images, LayoutGrid } from 'lucide-react';
 
 const MenuBar = () => {
 	return (
@@ -17,6 +17,11 @@ const MenuBar = () => {
 				<li>
 					<Link href="/works">
 						<FolderGit2 size={28} className="text-gray-800 hover:text-black transition" />
+					</Link>
+				</li>
+				<li>
+					<Link href="/apps">
+						<LayoutGrid size={28} className="text-gray-800 hover:text-black transition" />
 					</Link>
 				</li>
 				<li>

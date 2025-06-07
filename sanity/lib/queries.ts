@@ -167,3 +167,61 @@ export const ABOUT_WORKS_QUERY = defineQuery(`
 		link
 	}	
 `)
+
+export const LAST_APP_QUERY = defineQuery(`
+	*[_type == 'app'] | order(_createdAt desc) [0] {
+		'id': _id,
+		title,
+		'slug': slug.current,
+		link,
+		platform,
+		description,
+		'image': mainImage.asset -> url
+	}
+`)
+
+export const APPS_QUERY = defineQuery(`
+	*[_type == 'app'] | order(_createdAt desc) {
+		'id': _id,
+		title,
+		'slug': slug.current,
+		link,
+		platform,
+		description,
+		'image': mainImage.asset -> url,
+		tag
+	}
+`)
+
+export const APP_QUERY = defineQuery(`
+	*[_type == 'app' && slug.current == $slug] [0] {
+		'id': _id,
+		title,
+		'slug': slug.current,
+		link,
+		platform,
+		description,
+		'image': mainImage.asset -> url,
+		tag,
+		text
+	}
+`)
+
+export const APP_PRIVACY_QUERY = defineQuery(`
+	*[_type == 'appPolicy' && app._ref == $id] [0] {
+		'id': _id,
+		title,
+		app,
+		body
+	}
+`)
+
+
+export const APP_SUPPORT_QUERY = defineQuery(`
+	*[_type == 'appSupport' && app._ref == $id] [0] {
+		'id': _id,
+		title,
+		app,
+		body
+	}
+`)
