@@ -2,7 +2,7 @@ import { Separator } from '@/components/ui/separator'
 import Pin from '@/components/ui/pin'
 import { client } from '@/sanity/lib/client'
 import { APPS_QUERY, LAST_APP_QUERY } from '@/sanity/lib/queries'
-import { Eye, LayoutGrid } from 'lucide-react'
+import { Download, Eye, LayoutGrid } from 'lucide-react'
 import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -10,6 +10,7 @@ import React from 'react'
 import LastApp from '@/components/blocks/last-app'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import { appStore, playStore } from '@/assets'
 
 export const metadata: Metadata = {
 	title: 'Apps | tob.codes',
@@ -49,25 +50,31 @@ const AppsPage = async () => {
       <h2 className='heading-md mb-4 mt-16'>Tutte le apps</h2>
       <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
         {apps.map((app: any) => (
-          <Card key={app.id} className='bg-white border border-black/20 rounded-3xl p-4 flex flex-col items-start gap-4 w-full'>
+          <Card key={app.id} className='bg-white border border-black/20 rounded-[2rem] flex flex-col items-start gap-4 w-full'>
             <CardHeader>
               <CardTitle className='flex items-start justify-start gap-4'>
-                <Image src={app.image} alt={app.title} width={100} height={100} />
+                <Image src={app.image} alt={app.title} width={100} height={100} className='rounded-3xl border border-black/20' />
                 <div className='flex flex-col items-start'>
                   <h3 className='heading-sm'>{app.title}</h3>
                   <p className='text-sm text-black/50 mb-2 mt-1'>{app.tag.join(', ')}</p>
-                  <Pin title={app.platform} />
-                </div>
+                  <Pin title={<span className='flex items-center gap-1'><Image src={app.platform === 'Android' ? playStore : appStore} alt={app.platform} width={20} height={20} /> {app.platform}</span>} />
+                  </div>
               </CardTitle>
             </CardHeader>
             <CardContent>
               <p>{app.description}</p>
             </CardContent>
-            <CardFooter className='w-full'>
-              <Button className='w-full' asChild>
+            <CardFooter className='flex gap-4 w-full'>
+              <Button className='w-full' variant='outline' asChild>
                 <Link href={`/apps/${app.slug}`}>
                   <Eye className='inline-block' size={16} />
                     Leggi di più
+                </Link>
+              </Button>
+              <Button className='w-full' asChild>
+                <Link href={`/apps/${app.slug}`}>
+                  <Download className='inline-block' size={16} />
+                    Scarica
                 </Link>
               </Button>
             </CardFooter>
